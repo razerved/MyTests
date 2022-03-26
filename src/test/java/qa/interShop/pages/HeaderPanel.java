@@ -1,0 +1,24 @@
+package qa.interShop.pages;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
+public class HeaderPanel {
+    private WebDriver driver;
+
+    public HeaderPanel(WebDriver driver) {
+        this.driver = driver;
+    }
+
+
+    //NavigationPanel===================================================================================================
+    public By navigationMainPanelLocator = By.xpath("//a[text()='Главная']/parent::li[@id]");
+    public By navigationCatalogPanelLocator = By.xpath("//a[text()='Каталог']");
+    public By navigationMyAccPanelLocator = By.xpath("//a[text()='Мой аккаунт']/parent::li[@id]");
+    public By navigationBasketPanelLocator = By.xpath("//a[text()='Корзина']/parent::li[@id]");
+    public By navigationOrderPanelLocator = By.xpath("//a[text()='Оформление заказа']/parent::li[@id]");
+
+
+
+
+}
