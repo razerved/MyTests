@@ -55,7 +55,7 @@ public class MainPageTest extends TestBase {
                 + actMyBasket + " ", page.UrlBasket , actMyBasket);
 
         driver.get(page.UrlBasket);
-        driver.findElement(page.hp.navigationMainPanelLocator).click();
+        page.hp.navigationMainPanelLocator.click(); //PageFactory=======================================================
         String actMyMain = driver.getCurrentUrl();
         assertEquals("Переход осуществлен на страницу: "
                 + actMyMain + " ", page.urlMain , actMyMain);

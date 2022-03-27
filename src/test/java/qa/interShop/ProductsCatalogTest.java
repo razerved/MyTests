@@ -5,24 +5,9 @@ import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import qa.interShop.pages.MainPage;
 
+import static org.junit.Assert.*;
+
 public class ProductsCatalogTest extends TestBase{
-
-
-    /**
-     * Проверка основных секций, элементов на странице
-     */
-    @Test
-    public void testCheckCatalogElements(){
-        MainPage page = new MainPage(driver);
-
-        driver.get(page.UrlCatalog);
-        Assert.assertTrue("Категории товаров отсутствуют",
-                driver.findElement(page.pc.productCategoriesLocator).isDisplayed());
-        Assert.assertTrue("Фильтр отсутствует",
-                driver.findElement(page.pc.productFilterLocator).isDisplayed());
-        page.findContactsMainPage();
-
-    }
 
 
     /**
@@ -33,15 +18,30 @@ public class ProductsCatalogTest extends TestBase{
         MainPage page = new MainPage(driver);
 
         driver.get(page.UrlCatalog);
-        driver.findElements(page.pc.buttonBasketCatalogLocator).get(2).click();
+        page.pc.buttonBasketCatalogLocator.get(2).click(); //PageFactory================================================
         driver.findElement(page.pc.buttonDetailedCatalogLocator).click();
         String actMyCart = driver.getCurrentUrl();
-        Assert.assertEquals("Редирект на: "
+        assertEquals("Редирект на: "
                 + page.UrlBasket + "не прошел", page.UrlBasket, actMyCart );
 
     }
 
 
+    /**
+     * Проверка основных секций, элементов на странице
+     */
+    @Test
+    public void testCheckCatalogElements(){
+        MainPage page = new MainPage(driver);
+
+        driver.get(page.UrlCatalog);
+        assertTrue("Категории товаров отсутствуют",
+                driver.findElement(page.pc.productCategoriesLocator).isDisplayed());
+        assertTrue("Фильтр отсутствует",
+                driver.findElement(page.pc.productFilterLocator).isDisplayed());
+        page.findContactsMainPage();
+
+    }
 
 
 }
