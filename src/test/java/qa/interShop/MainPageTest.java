@@ -61,11 +61,9 @@ public class MainPageTest extends TestBase {
                 + actMyMain + " ", page.urlMain , actMyMain);
     }
 
-    @Test
+    /*@Test
     public void testAuthorization(){
 
-    }
-
-
+    }*/
 
 }

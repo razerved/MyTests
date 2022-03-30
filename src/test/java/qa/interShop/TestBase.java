@@ -12,6 +12,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
@@ -26,16 +27,20 @@ public class TestBase {
     @Before
     public void setUp() throws IOException {
         System.setProperty("webdriver.chrome.driver", "drivers\\\\chromedriver.exe");
-        driver = new ChromeDriver();
-        wait = wait = new WebDriverWait(driver, Duration.ofSeconds(7000));
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(6000));
+        driver = new ChromeDriver(/*options*/);
+        wait = wait = new WebDriverWait(driver, Duration.ofSeconds(3000));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5000));//неявное ожидание елемента в DOM страницы
         driver.manage().window().setSize(new Dimension(1920,1080));
-        File sctFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(sctFile, new File("F:\\screenShotForTest"));
+
+        var options = new ChromeOptions();
+        options.addArguments("--start-maximized");
+
     }
 
     @After
-    public void tearDown(){
+    public void tearDown() throws IOException {
+        File sourceFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(sourceFile, new File("F:\\screenShotForTest\\screenshot.png"));
         driver.quit();
     }
 

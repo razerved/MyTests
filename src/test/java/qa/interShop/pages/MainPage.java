@@ -10,13 +10,16 @@ public class MainPage {
     public HeaderPanel hp;
     public BasketPage bp;
     public ProductCatalogPage pc;
+    public BonusProgram bonus;
 
 
     public MainPage(WebDriver driver) {
+       //super(driver);
         this.driver = driver;
         hp = new HeaderPanel(driver);
         bp = new BasketPage(driver);
         pc = new ProductCatalogPage(driver);
+        bonus = new BonusProgram(driver);
     }
 
     public String urlMain = "http://intershop6.skillbox.ru/";
@@ -79,6 +82,11 @@ public class MainPage {
     }
 
 
+
+   /* public MainPage clickButton(By button){
+        driver.findElement(button).click();
+        return new MainPage(driver);
+    }*/
 
 
 }

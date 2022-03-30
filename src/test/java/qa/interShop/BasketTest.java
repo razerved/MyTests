@@ -3,9 +3,10 @@ package qa.interShop;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import qa.interShop.pages.HeaderPanel;
 import qa.interShop.pages.MainPage;
+import qa.interShop.pages.Page;
 
 import static org.junit.Assert.*;
 
@@ -69,6 +70,7 @@ public class BasketTest extends TestBase {
         driver.get(page.UrlCatalog);
         driver.findElements(page.bp.buttonBasketCatalogLocator).get(2).click();
         driver.findElement(page.bp.buttonDetailedCatalogLocator).click();
+        //driver.findElement(page.bp.buttonDetailedCatalogLocator).click();
         String product = driver.findElement(page.bp.nameProductLocator).getText();
         driver.findElement(page.bp.removeButtonLocator).click();
         var x = driver.findElement(page.bp.emptyBasketTextLocator).getText();
@@ -117,12 +119,10 @@ public class BasketTest extends TestBase {
         }catch (Exception e){}
 
 
-
-
-
-
-
     }
+
+
+
 
 
 }
