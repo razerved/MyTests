@@ -4,9 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import qa.interShop.pages.HeaderPanel;
 import qa.interShop.pages.MainPage;
-import qa.interShop.pages.Page;
 
 import static org.junit.Assert.*;
 
@@ -20,7 +18,7 @@ public class BasketTest extends TestBase {
     public void testCoupon(){
         var page = new MainPage(driver);
 
-        driver.get(page.UrlCatalog);
+        driver.get(page.urlCatalog);
         driver.findElements(page.bp.buttonBasketCatalogLocator).get(2).click();
         driver.findElement(page.bp.buttonDetailedCatalogLocator).click();
         driver.findElement(page.bp.enterCouponLocator).sendKeys("sert500");
@@ -48,7 +46,7 @@ public class BasketTest extends TestBase {
     public void testCanChangQuantity(){
         var page = new MainPage(driver);
 
-        driver.get(page.UrlCatalog);
+        driver.get(page.urlCatalog);
         driver.findElements(page.bp.buttonBasketCatalogLocator).get(2).click();
         driver.findElement(page.bp.buttonDetailedCatalogLocator).click();
         driver.findElement(page.bp.changeNumberLocator).sendKeys(Keys.ARROW_RIGHT);
@@ -67,7 +65,7 @@ public class BasketTest extends TestBase {
     public void deleteAndRecoveryProduct(){
         var page = new MainPage(driver);
 
-        driver.get(page.UrlCatalog);
+        driver.get(page.urlCatalog);
         driver.findElements(page.bp.buttonBasketCatalogLocator).get(2).click();
         driver.findElement(page.bp.buttonDetailedCatalogLocator).click();
         //driver.findElement(page.bp.buttonDetailedCatalogLocator).click();
@@ -88,7 +86,7 @@ public class BasketTest extends TestBase {
     public void notCorrectCoupon(){
         var page = new MainPage(driver);
 
-        driver.get(page.UrlCatalog);
+        driver.get(page.urlCatalog);
         driver.findElements(page.bp.buttonBasketCatalogLocator).get(2).click();
         driver.findElement(page.bp.buttonDetailedCatalogLocator).click();
         driver.findElement(page.bp.enterCouponLocator).sendKeys("rest500");
@@ -106,7 +104,7 @@ public class BasketTest extends TestBase {
     public void orderProcessing(){
         var page = new MainPage(driver);
 
-        driver.get(page.UrlCatalog);
+        driver.get(page.urlCatalog);
         driver.findElements(page.bp.buttonBasketCatalogLocator).get(2).click();
         driver.findElement(page.bp.buttonDetailedCatalogLocator).click();
         driver.findElement(page.bp.buttonBasketCheckoutLocator).click();
@@ -115,7 +113,7 @@ public class BasketTest extends TestBase {
             Thread.sleep(500);
             String ActResult = driver.getCurrentUrl();
             Assert.assertEquals("Редирект на: "
-                    + page.UrlOrderProcessing + "не прошел", page.UrlOrderProcessing, ActResult);
+                    + page.urlOrderProcessing + "не прошел", page.urlOrderProcessing, ActResult);
         }catch (Exception e){}
 
 

@@ -27,13 +27,15 @@ public class TestBase {
     @Before
     public void setUp() throws IOException {
         System.setProperty("webdriver.chrome.driver", "drivers\\\\chromedriver.exe");
-        driver = new ChromeDriver(/*options*/);
+        driver = new ChromeDriver();
+
+        ChromeOptions options = new ChromeOptions();
+        //options.addArguments("--start-maximized");
+        options.addArguments("--incognito");
+
         wait = wait = new WebDriverWait(driver, Duration.ofSeconds(3000));
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5000));//неявное ожидание елемента в DOM страницы
         driver.manage().window().setSize(new Dimension(1920,1080));
-
-        var options = new ChromeOptions();
-        options.addArguments("--start-maximized");
 
     }
 

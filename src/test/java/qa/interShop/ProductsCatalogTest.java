@@ -1,8 +1,6 @@
 package qa.interShop;
 
-import org.junit.Assert;
 import org.junit.Test;
-import org.openqa.selenium.WebDriver;
 import qa.interShop.pages.MainPage;
 
 import static org.junit.Assert.*;
@@ -17,12 +15,12 @@ public class ProductsCatalogTest extends TestBase{
     public void testAddingToBasket(){
         MainPage page = new MainPage(driver);
 
-        driver.get(page.UrlCatalog);
+        driver.get(page.urlCatalog);
         page.pc.buttonBasketCatalogLocator.get(2).click(); //PageFactory================================================
         driver.findElement(page.pc.buttonDetailedCatalogLocator).click();
         String actMyCart = driver.getCurrentUrl();
         assertEquals("Редирект на: "
-                + page.UrlBasket + "не прошел", page.UrlBasket, actMyCart );
+                + page.urlBasket + "не прошел", page.urlBasket, actMyCart );
 
     }
 
@@ -34,7 +32,7 @@ public class ProductsCatalogTest extends TestBase{
     public void testCheckCatalogElements(){
         MainPage page = new MainPage(driver);
 
-        driver.get(page.UrlCatalog);
+        driver.get(page.urlCatalog);
         assertTrue("Категории товаров отсутствуют",
                 driver.findElement(page.pc.productCategoriesLocator).isDisplayed());
         assertTrue("Фильтр отсутствует",

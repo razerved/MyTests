@@ -23,12 +23,12 @@ public class MainPage {
     }
 
     public String urlMain = "http://intershop6.skillbox.ru/";
-    public String UrlRegister = "http://intershop6.skillbox.ru/register/";
-    public String UrlAuthoriz = "http://intershop6.skillbox.ru/my-account/";
-    public String UrlBasket = "http://intershop6.skillbox.ru/cart/";
-    public String UrlCatalog = "http://intershop6.skillbox.ru/product-category/catalog/";
-    public String UrlOrderProcessing = "http://intershop6.skillbox.ru/checkout/";
-    public String UrlCheckout = "http://intershop6.skillbox.ru/checkout/";
+    public String urlRegister = "http://intershop6.skillbox.ru/register/";
+    public String urlAuthoriz = "http://intershop6.skillbox.ru/my-account/";
+    public String urlBasket = "http://intershop6.skillbox.ru/cart/";
+    public String urlCatalog = "http://intershop6.skillbox.ru/product-category/catalog/";
+    public String urlOrderProcessing = "http://intershop6.skillbox.ru/checkout/";
+    public String urlCheckout = "http://intershop6.skillbox.ru/checkout/";
     //http://google.com
 
 
@@ -38,6 +38,7 @@ public class MainPage {
     public By sectionSaleLocator = By.cssSelector("aside#accesspress_store_product-2");
     public By sectionNewCollectionLocator = By.cssSelector("aside#accesspress_store_product-3");
     public By contactsInfoLocator = By.cssSelector("div.cta-desc_simple");
+
 
 
 
