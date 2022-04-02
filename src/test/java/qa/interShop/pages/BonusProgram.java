@@ -1,12 +1,9 @@
 package qa.interShop.pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
-import java.util.List;
 
 public class BonusProgram {
     private WebDriver driver;
@@ -18,8 +15,10 @@ public class BonusProgram {
 
     public String urlBonus = "http://intershop6.skillbox.ru/bonus/";
 
-    public String bonusName = "Ivan";
-    public String bonusTel = "89111111111";
+    public String bonusTestName = "Ivan";
+    public String bonusTestPhone = "89111111111";
+    public String bonusTestName2 = "Вася";
+    public String bonusTestPhone2 = "+79111111111";
 
     public String textForClient = "Ваша карта оформлена!\n" +
             "\n" +
@@ -44,7 +43,15 @@ public class BonusProgram {
     @FindBy(xpath = "//div[@id='bonus_main']/br/following-sibling::*")
     public WebElement textCardIsIssued;
 
+    @FindBy(xpath = "//div[contains(text(), 'обязательно')]")
+    public WebElement textRequiredField;
 
 
+    //SpecificPageMethod================================================================================================
+    public void cardRegistrationMethod(String page1, String page2) {
+        enterTextBonusProgramLocator.sendKeys(page1);
+        enterPhoneBonusProgramLocator.sendKeys(page2);
+        buttonCreateCardBonusProgramLocator.click();
+    }
 
 }

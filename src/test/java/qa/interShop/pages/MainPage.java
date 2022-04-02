@@ -32,6 +32,11 @@ public class MainPage {
     //http://google.com
 
 
+    //UserDate==========================================================================================================
+    public String testUserEmail = "TsetTset@rb.com";
+    public String testUserPassword = "Retro123";
+
+
 
     //SectionCollection=================================================================================================
     public By logoTitleLocator = By.cssSelector("#site-branding a.site-logo");
@@ -41,13 +46,11 @@ public class MainPage {
 
 
 
-
     //logIn=============================================================================================================
     public By enterLocator = By.cssSelector(".login-woocommerce a");
     public By logInNameLocator = By.cssSelector("#username");
     public By logInPassLocator = By.cssSelector("#password");
     public By hiUserNameLocator = By.xpath("//span[@class='user-name']");
-
 
 
 
