@@ -2,10 +2,7 @@ package qa.interShop;
 
 
 import org.apache.commons.io.FileUtils;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.OutputType;
@@ -24,7 +21,7 @@ public class TestBase {
     public WebDriver driver;
     public WebDriverWait wait;
 
-    @Before
+    @BeforeEach
     public void setUp() throws IOException {
         System.setProperty("webdriver.chrome.driver", "drivers\\\\chromedriver.exe");
         driver = new ChromeDriver();
@@ -33,13 +30,13 @@ public class TestBase {
         //options.addArguments("--start-maximized");
         options.addArguments("--incognito");
 
-        wait = wait = new WebDriverWait(driver, Duration.ofSeconds(3000));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(3000));
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5000));//неявное ожидание елемента в DOM страницы
         driver.manage().window().setSize(new Dimension(1920,1080));
 
     }
 
-    @After
+    @AfterEach
     public void tearDown() throws IOException {
         File sourceFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(sourceFile, new File("F:\\screenShotForTest\\screenshot.png"));

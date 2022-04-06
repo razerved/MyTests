@@ -1,9 +1,14 @@
 package qa.interShop.pages;
 
+import org.junit.jupiter.api.MethodOrderer;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
+import java.time.Duration;
+import java.util.NoSuchElementException;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 public class MainPage {
     private WebDriver driver;
@@ -54,6 +59,17 @@ public class MainPage {
 
 
 
+    //Authorization=====================================================================================================
+    public By authorizationLocator = By.cssSelector(".custom-register-button");
+    public By enterButtonLocator = By.cssSelector(".woocommerce-form-login__submit");
+    public By registrationUserNameLocator = By.cssSelector("#reg_username");
+    public By registrationMailAddressLocator = By.cssSelector("#reg_email");
+    public By registrationPasswordLocator = By.cssSelector("#reg_password");
+    public By registrationButtonLocator = By.cssSelector("button[name='register']");
+    public By registrationPassTextLocator = By.xpath("//div[text()='Регистрация завершена']");
+
+
+
     //Methods===========================================================================================================
     public void findContactsMainPage() {
         try{
@@ -87,6 +103,37 @@ public class MainPage {
 
 
 
+    public Boolean isElementsDisplayed(WebElement elementDisplayed){
+        try {
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+         return elementDisplayed.isDisplayed();
+        } catch (NoSuchElementException e) {
+            return false;
+        } finally {
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        }
+    }
+
+    public Boolean isElementsNotDisplayed(WebElement elementDisplayed){
+        try {
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(0));
+            return elementDisplayed.isDisplayed();
+        } catch (NoSuchElementException e) {
+            return false;
+        } finally {
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        }
+    }
+
+
+
+
+    public void randomRegistrationMethod() {
+        driver.findElement(logoTitleLocator).isDisplayed();
+        driver.findElement(enterLocator).click();
+        driver.findElement(authorizationLocator).click();
+        driver.findElement(registrationUserNameLocator).sendKeys(randomText());
+    }
    /* public MainPage clickButton(By button){
         driver.findElement(button).click();
         return new MainPage(driver);

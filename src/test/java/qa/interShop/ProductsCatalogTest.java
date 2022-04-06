@@ -1,9 +1,9 @@
 package qa.interShop;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import qa.interShop.pages.MainPage;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ProductsCatalogTest extends TestBase{
 
@@ -19,8 +19,8 @@ public class ProductsCatalogTest extends TestBase{
         page.pc.buttonBasketCatalogLocator.get(2).click(); //PageFactory================================================
         driver.findElement(page.pc.buttonDetailedCatalogLocator).click();
         String actMyCart = driver.getCurrentUrl();
-        assertEquals("Редирект на: "
-                + page.urlBasket + "не прошел", page.urlBasket, actMyCart );
+        assertEquals(page.urlBasket, actMyCart ,
+                "Редирект на: " + page.urlBasket + "не прошел");
 
     }
 
@@ -33,10 +33,10 @@ public class ProductsCatalogTest extends TestBase{
         MainPage page = new MainPage(driver);
 
         driver.get(page.urlCatalog);
-        assertTrue("Категории товаров отсутствуют",
-                driver.findElement(page.pc.productCategoriesLocator).isDisplayed());
-        assertTrue("Фильтр отсутствует",
-                driver.findElement(page.pc.productFilterLocator).isDisplayed());
+        assertTrue(driver.findElement(page.pc.productCategoriesLocator).isDisplayed(),
+                "Категории товаров отсутствуют");
+        assertTrue(driver.findElement(page.pc.productFilterLocator).isDisplayed(),
+                "Фильтр отсутствует");
         page.findContactsMainPage();
 
     }
