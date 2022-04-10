@@ -11,6 +11,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import qa.interShop.pages.MainPage;
 
 import java.io.File;
 import java.io.IOException;
@@ -20,6 +21,8 @@ import java.util.concurrent.TimeUnit;
 public class TestBase {
     public WebDriver driver;
     public WebDriverWait wait;
+
+    /*public MainPage page;*/
 
     @BeforeEach
     public void setUp() throws IOException {
@@ -34,6 +37,7 @@ public class TestBase {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5000));//неявное ожидание елемента в DOM страницы
         driver.manage().window().setSize(new Dimension(1920,1080));
 
+       /*page = new MainPage(driver);*/
     }
 
     @AfterEach

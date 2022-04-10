@@ -20,14 +20,16 @@ public class MainPageTest extends TestBase {
 
         driver.get(page.urlMain);
         //driver.navigate().to(mp.url);
-        assertTrue(driver.findElement(page.logoTitleLocator).isDisplayed(),
-                "Logo отсутствует");
-        assertTrue(driver.findElement(page.enterLocator).isDisplayed(),
-                "Кнопка 'Войти' отсутствует");
-        assertTrue(driver.findElement(page.sectionSaleLocator).isDisplayed(),
-                "Секция 'Распродажа' отсутствует");
-        assertTrue(driver.findElement(page.sectionNewCollectionLocator).isDisplayed(),
-                "Секция 'Новые Товары' отсутствует");
+        assertAll(
+                ()->assertTrue(driver.findElement(page.logoTitleLocator).isDisplayed(),
+                        "Logo отсутствует"),
+                ()->assertTrue(driver.findElement(page.enterLocator).isDisplayed(),
+                "Кнопка 'Войти' отсутствует"),
+                ()->assertTrue(driver.findElement(page.sectionSaleLocator).isDisplayed(),
+                        "Секция 'Распродажа' отсутствует"),
+                ()->assertTrue(driver.findElement(page.sectionNewCollectionLocator).isDisplayed(),
+                        "Секция 'Новые Товары' отсутствует")
+        );
         driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
         page.findContactsMainPage();
         assertTrue(driver.findElement(page.contactsInfoLocator).isDisplayed(),
