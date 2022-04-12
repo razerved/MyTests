@@ -17,8 +17,8 @@ import java.util.Random;
 
 public class Page {
 
-    private static WebDriver driver;
-    private static WebDriverWait wait;
+     WebDriver driver;
+     WebDriverWait wait;
     public RegistrationPage rp;
     public AuthorizationPage ap;
 
@@ -26,15 +26,14 @@ public class Page {
         this.driver = driver;
         this.wait = wait;
         PageFactory.initElements(driver, this);
-
     }
 
     public void init() {
         System.setProperty("webdriver.chrome.driver", "drivers\\\\chromedriver.exe");
         ChromeOptions options = new ChromeOptions();
+        options.addArguments("--start-maximized");
         driver = new ChromeDriver(options);
         wait = new WebDriverWait(driver, Duration.ofSeconds(3000));
-        options.addArguments("--start-maximized");
 
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5000));
         //driver.manage().window().setSize(new Dimension(1920,1080));

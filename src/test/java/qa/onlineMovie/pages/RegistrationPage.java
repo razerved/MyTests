@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class RegistrationPage extends Page {
-    //private WebDriver driver;
+    private WebDriver driver;
     //private Page newPage;
 
     public RegistrationPage(WebDriver driver) {
@@ -17,7 +17,9 @@ public class RegistrationPage extends Page {
     }
 
 
-
+    public String userName = "Иван";
+    public String userEmail = "skillbox@test.ru";
+    public String userPassword = "qwerty!123";
     public String urlRegister = "https://lm.skillbox.cc/qa_tester/module06/register/";
 
     @FindBy(css = "h1.main-title")
@@ -65,9 +67,9 @@ public class RegistrationPage extends Page {
     //Method============================================================================================================
 
     public void registration() {
-        emailLocator.sendKeys("skillbox@test.ru");
-        nameLocator.sendKeys("Иван");
-        passwordLocator.sendKeys("qwerty!123");
+        emailLocator.sendKeys(userEmail);
+        nameLocator.sendKeys(userName);
+        passwordLocator.sendKeys(userPassword);
         click(buttonRegistrationLocator);
     }
 
