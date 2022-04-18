@@ -1,12 +1,10 @@
 package qa.onlineMovie.pages;
 
 import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -16,18 +14,18 @@ import java.time.Duration;
 import java.util.Random;
 
 public class Page {
+    WebDriver driver;
 
-     WebDriver driver;
-     WebDriverWait wait;
+    WebDriverWait wait;
     public RegistrationPage rp;
     public AuthorizationPage ap;
 
     public Page(WebDriver driver) {
-        this.driver = driver;
         this.wait = wait;
         PageFactory.initElements(driver, this);
     }
 
+    //InitializationOptions=============================================================================================
     public void init() {
         System.setProperty("webdriver.chrome.driver", "drivers\\\\chromedriver.exe");
         ChromeOptions options = new ChromeOptions();
@@ -42,46 +40,74 @@ public class Page {
         ap = new AuthorizationPage(driver);
     }
 
+    public RegistrationPage getRegistrationPage() {
+        return rp;
+    }
+
+    public AuthorizationPage getAuthorizationPage() {
+        return ap;
+    }
+
     public void stop() throws IOException {
-        File sourceFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        File sourceFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(sourceFile, new File("F:\\screenShotForTest\\screenshot.png"));
         driver.quit();
     }
 
-    public void open(String url){
+
+
+
+
+
+
+    //CommonLocators====================================================================================================
+    @FindBy(css = "input[id='email']")
+    public WebElement emailLocator;
+    //public By emailLocator = By.cssSelector("#email");
+
+    @FindBy(css = "input[id='password']")
+    public WebElement passwordLocator;
+    //public By passwordLocator = By.cssSelector("#password");
+
+
+    //CommonMethods=====================================================================================================
+    public void open(String url) {
         driver.get(url);
     }
 
 
 
-
-
-
-
-
-
-    public String randomName(){
+    //Another(Helper)Methods============================================================================================
+    public String randomName() {
         return randomText();
     }
 
-    public String randomEmail(){
+    public String randomEmail() {
         return randomText() + "@" + randomText() + ".com";
     }
 
+    public String randomPassword() {
+        int i = (int) (Math.random() * (10 - 1) + 1);
+        return randomText() + i + "" + i;
+    }
 
-    public String randomText(){
+    public String randomText() {
         Random rnd = new Random();
-        char[] some = {'a','b','c','d','e','f','g','k','l','m','n','o'};
+        char[] some = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'k', 'l', 'm', 'n', 'o'};
         StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < 6 ; i++){
+        for (int i = 0; i < 6; i++) {
             char newChar = (char) rnd.nextInt(14);
             stringBuilder.append(some[newChar]);
         }
         return stringBuilder.toString();
     }
 
-    public void click(WebElement locator){
+    public void click(WebElement locator) {
         locator.click();
+    }
+
+    public void click(By cssSelector){
+        driver.findElement(cssSelector).click();
     }
 
 

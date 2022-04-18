@@ -3,9 +3,11 @@ package qa.onlineMovie;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import qa.onlineMovie.pages.Page;
 
 import java.io.IOException;
+import java.util.Random;
 
 public class TestBase {
     protected WebDriver driver;
@@ -24,8 +26,5 @@ public class TestBase {
     public void teaDown() throws IOException {
         page.stop();
     }
-
-
-
 
 }

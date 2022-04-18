@@ -5,9 +5,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-
-import java.sql.SQLOutput;
 
 public class RegistrationTest extends TestBase {
 
@@ -17,7 +14,7 @@ public class RegistrationTest extends TestBase {
     public void test2() {
         page.open(page.rp.urlRegister);
 
-        page.rp.registration();
+        page.getRegistrationPage().registration();
 
         assertAll(
                 () -> assertEquals(page.rp.userEmail,
@@ -57,7 +54,9 @@ public class RegistrationTest extends TestBase {
 
     /*@Test
     public void test3() {
+    page.open(page.rp.urlRegister);
 
+    page.rp.randomRegistration();
 
     }*/
 

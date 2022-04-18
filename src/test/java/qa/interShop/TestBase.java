@@ -19,7 +19,7 @@ import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 public class TestBase {
-    public WebDriver driver;
+    protected WebDriver driver;
     public WebDriverWait wait;
 
     /*public MainPage page;*/

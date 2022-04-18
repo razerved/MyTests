@@ -29,18 +29,10 @@ public class RegistrationPage extends Page {
     @FindBy(css = "input[id='name']")
     public WebElement nameLocator;
     //public By nameLocator = By.cssSelector("input[id='name']");
-    @FindBy(css = "input[id='email']")
-    public WebElement emailLocator;
-    //public By emailLocator = By.cssSelector("input[id='email']");
-    @FindBy(css = "input[id='password']")
-    public WebElement passwordLocator;
-    //public By passwordLocator = By.cssSelector("input[id='password']");
 
-
-    @FindBy(css = "button.form-submit")
+    @FindBy(xpath = "//button[contains(text(), 'Зарегистрироваться')]")
     public WebElement buttonRegistrationLocator;
-    //public By buttonRegistrationLocator = By.cssSelector("button.form-submit");
-
+    //public By buttonRegistrationLocator = By.xpath("//button[contains(text(), 'Зарегистрироваться')]");
 
     @FindBy(css = "h3.form-title.result")
     public WebElement textYouRegistration;
@@ -70,6 +62,13 @@ public class RegistrationPage extends Page {
         emailLocator.sendKeys(userEmail);
         nameLocator.sendKeys(userName);
         passwordLocator.sendKeys(userPassword);
+        click(buttonRegistrationLocator);
+    }
+
+    public void randomRegistration(){
+        emailLocator.sendKeys(randomEmail());
+        nameLocator.sendKeys(randomName());
+        passwordLocator.sendKeys(randomPassword());
         click(buttonRegistrationLocator);
     }
 
