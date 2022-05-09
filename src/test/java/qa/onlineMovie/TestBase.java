@@ -9,6 +9,9 @@ import qa.onlineMovie.pages.Page;
 import java.io.IOException;
 import java.util.Random;
 
+/*
+  ToDo: Для данного сайта требуется. сделать только не сложные тесты восстановления пароля!!!
+*/
 public class TestBase {
     protected WebDriver driver;
     /*WebDriver driver;
@@ -19,7 +22,6 @@ public class TestBase {
     public void setUp() {
         page.init();
     }
-
 
 
     @AfterEach

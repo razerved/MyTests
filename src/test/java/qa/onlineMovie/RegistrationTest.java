@@ -11,7 +11,7 @@ public class RegistrationTest extends TestBase {
 
     @Test
     @DisplayName("Тест успешной регистрации данные соответствуют указанным")
-    public void test2() {
+    public void test1() {
         page.open(page.rp.urlRegister);
 
         page.getRegistrationPage().registration();
@@ -47,10 +47,72 @@ public class RegistrationTest extends TestBase {
                             " на страницу авторизации не успешный");
         }catch (Exception e){}
 
+    }
+
+
+    @Test
+    @DisplayName("Успешный тест восстановление пароля + авторизация с новым паролем")
+    public void test2(){
+        page.open(page.getRegistrationPage().urlRegister);
+        page.getRegistrationPage().registration();
+        page.toGotoModalWindowForgotPass();
+        page.getAuthorizationPage().modalWindowEmailLocatorRestorePasswordLocator
+                .sendKeys(page.userEmail);
+        page.getAuthorizationPage().modalWindowButtonRestorePasswordLocator.click();
+        page.getAuthorizationPage().restoreInfoMail.click();
+        String newPassword = page.getAuthorizationPage().newRestoreUserPasswordLocator.getText();
+        page.getAuthorizationPage().closeInfoModalWindowRestoreLocator.click();
+        page.getAuthorizationPage().authorizationMethod(newPassword);
+        page.waitForDisplayed(page.pa.myFilmTextLocator); // ожидание, в рамках Задачи
+        assertTrue(page.getPersonalAccountPage().titlePersonAcLocator.isDisplayed(),
+                "Пользователь не попал в личный кабинет");
 
 
     }
 
+    @Test
+    @DisplayName("Проверка ошибки не верно вписанного email при восстановлении пароля")
+    public void test3(){
+        page.open(page.getRegistrationPage().urlRegister);
+        page.getRegistrationPage().registration();
+        page.toGotoModalWindowForgotPass();
+        page.fillForgotPasswordForm("test@ts.com");
+        String errorMessage = page.getAuthorizationPage().errorEmailNotRegistered.getText();
+        assertEquals("Такой email не зарегистрирован",
+                errorMessage, "Не выведен тект - Email не зарегистрирован");
+
+    }
+
+
+    /**
+     * При вводе email пустой клик без ввода текста, выдается ошибка "Введите email"
+     */
+    @Test
+    @DisplayName("Проверка ошибки \"Введите Email\" при восстановлении пароля")
+    public void test4(){
+        page.open(page.getRegistrationPage().urlRegister);
+        page.getRegistrationPage().registration();
+        page.toGotoModalWindowForgotPass();
+        page.getAuthorizationPage().modalWindowButtonRestorePasswordLocator.click();
+        String errorMessage = page.getAuthorizationPage().errorEnterEmail.getText();
+        assertEquals("Введите email",
+                errorMessage, "Не выведен тект - Введите email");
+
+    }
+
+    /*ToDo: Написать тест забираем новый пароль в переменную,
+        при авторизации указать старыйб убедится: выдает ошибку "Пароль не относится к почте"*/
+
+
+    /*@Test
+    @DisplayName("Проверка ошибки при некоректном email восстановления пороля")
+    public void test3(){
+        page.open(page.getAuthorizationPage().urlRegister);
+
+        page.getRegistrationPage().registration
+                ("test@test.com", "Иван", "qwerty!123");
+
+    }*/
 
     /*@Test
     public void test3() {

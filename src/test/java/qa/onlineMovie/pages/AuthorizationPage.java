@@ -1,5 +1,6 @@
 package qa.onlineMovie.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -7,7 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 
 public class AuthorizationPage extends Page {
 
-    private WebDriver driver;
+    //private WebDriver driver;
 
 
     public AuthorizationPage(WebDriver driver) {
@@ -33,7 +34,7 @@ public class AuthorizationPage extends Page {
 
 
 
-    //ModalWindowLocator================================================================================================
+    //ModalWindowLocatorRestorePassword=================================================================================
     @FindBy(css = "#forgot-password-popup")
     public WebElement modalWindowRestorePasswordLocator;
 
@@ -47,7 +48,44 @@ public class AuthorizationPage extends Page {
     public WebElement closeModalWindowRestorePasswordLocator;
 
 
+    @FindBy(css = ".mail__message")
+    public WebElement restoreInfoMail;
+    //public By restoreMail = By.cssSelector(".mail__message");
+    @FindBy(css = "a.user-data.user__login")
+    public WebElement userInfoEmailRestoreLocator;
+    @FindBy(css = ".user__password")
+    public WebElement userInfoPasswordRestoreLocator;
+    @FindBy(css = "span.user-data.user__password")
+    public WebElement newRestoreUserPasswordLocator;
+
+    @FindBy(css = "a.popup-close")
+    public WebElement closeInfoModalWindowRestoreLocator;
+        //errorLocator==================================================================================================
+
+    @FindBy(xpath = "//form[@id='forgot-password-form']/p[contains(text(),'email не зарегистрирован')]")
+    public WebElement errorEmailNotRegistered;
+
+    @FindBy(xpath = "//p[contains(text(),'Введите email')]")
+    public WebElement errorEnterEmail;
+
+
+
     //Method============================================================================================================
+
+    public void authorizationMethod() {
+        emailLocator.sendKeys(userEmail);
+        passwordLocator.sendKeys(userPassword);
+        enterButtonLocator.click();
+    }
+
+    public void authorizationMethod(String newPassword) {
+        emailLocator.sendKeys(userEmail);
+        passwordLocator.sendKeys(newPassword);
+        enterButtonLocator.click();
+    }
+
+
+
 
 
 }
