@@ -68,7 +68,10 @@ public class AuthorizationPage extends Page {
     @FindBy(xpath = "//p[contains(text(),'Введите email')]")
     public WebElement errorEnterEmail;
 
+    /*@FindBy(xpath = "//p[contains(text(),'Пароль не относится к почте')]")
+    public WebElement errorEmailDoestApplyMail;*/
 
+    public By errorEmailDoestApplyMail = By.xpath("//p[contains(text(),'Пароль не относится к почте')]");
 
     //Method============================================================================================================
 

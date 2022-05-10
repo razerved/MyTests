@@ -132,7 +132,7 @@ public class Page {
     public boolean isSuccessDisplayed(){
         try{
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
-            return true;//как вариант запихнуть ожидание елемента.isDisplayed
+            return true;//как вариант запихнуть ожидание элемента.isDisplayed
         }catch (NoSuchElementException e){ return false;}
         finally {
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
@@ -152,6 +152,9 @@ public class Page {
         getAuthorizationPage().modalWindowButtonRestorePasswordLocator.click();
     }
 
+    public String getText(By element){
+        return driver.findElement(element).getText();
+    }
     
     
     
