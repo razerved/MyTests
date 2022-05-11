@@ -4,6 +4,9 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.BrowserType;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Wait;
@@ -30,6 +33,14 @@ public class Page {
 
     //InitializationOptions=============================================================================================
     public void init() {
+        /*String Browser = BrowserType.CHROME;
+        if (Browser equals(ChromeDriver)){
+            driver = new ChromeDriver();
+        }else if (Browser equals(EdgeDriver)){
+            driver = new EdgeDriver();
+        }else if (Browser equals(FirefoxDriver)){
+            driver = new FirefoxDriver();
+        }*/
         System.setProperty("webdriver.chrome.driver", "drivers\\\\chromedriver.exe");
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--start-maximized");
@@ -123,18 +134,19 @@ public class Page {
     }
 
     //Явное ожидание элемента (кастомный)
-    public void waitForDisplayed(By element){
-        var newWait = new WebDriverWait(driver,Duration.ofSeconds(7));
+    public void waitForDisplayed(By element) {
+        var newWait = new WebDriverWait(driver, Duration.ofSeconds(7));
         newWait.until(driver -> driver.findElement(element).isDisplayed());
     }
 
     //Увеличеное ожидание, c откатом ожидания до нормы 5 сек (кастомный)
-    public boolean isSuccessDisplayed(){
-        try{
+    public boolean isSuccessDisplayed() {
+        try {
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
             return true;//как вариант запихнуть ожидание элемента.isDisplayed
-        }catch (NoSuchElementException e){ return false;}
-        finally {
+        } catch (NoSuchElementException e) {
+            return false;
+        } finally {
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         }
     }
@@ -152,10 +164,22 @@ public class Page {
         getAuthorizationPage().modalWindowButtonRestorePasswordLocator.click();
     }
 
-    public String getText(By element){
+    public String getText(By element) {
         return driver.findElement(element).getText();
     }
-    
-    
-    
+
+    public String getTextAttribute(By element) {
+        return driver.findElement(element).getAttribute("value");
+    }
+
+    public boolean elementPresent(By locator){
+        try{
+            driver.findElement(locator);
+            return true;
+        }catch (NoSuchElementException ex){
+            return false;
+        }
+    }
+
+
 }
