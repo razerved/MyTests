@@ -7,13 +7,11 @@ import qa.onlineInstitute.page.ApplicationManager;
 import java.io.IOException;
 
 public class TestBase {
-
     protected ApplicationManager app = new ApplicationManager();
 
     @BeforeEach
     public void setUp(){
         app.init();
-
     }
 
 

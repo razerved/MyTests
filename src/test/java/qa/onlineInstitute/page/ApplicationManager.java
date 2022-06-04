@@ -17,20 +17,25 @@ public class ApplicationManager {
     private WebDriver wd;
     public WebDriverWait wait;
 
+    private Courses course;
     private GroupHelper groupHelper;
+    private PersonalCourses personalCourses;
+    private PaymentPage PaymentPage;
 
 
     public void init() {
-        System.setProperty("webdriver.chrome.driver", "driver\\\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "drivers\\\\chromedriver.exe");
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--start-maximized");
-
         wd = new ChromeDriver(options);
         wait = new WebDriverWait(wd, Duration.ofSeconds(3000));
 
         wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(5000));
 
+        PaymentPage = new PaymentPage(wd);
         groupHelper = new GroupHelper(wd);
+        course = new Courses(wd);
+        personalCourses = new PersonalCourses(wd);
         groupHelper.login("admin", "tester");
     }
 
@@ -42,9 +47,12 @@ public class ApplicationManager {
         wd.quit();
     }
 
-
+    public PaymentPage getPaymentPage() {return PaymentPage;}
     public GroupHelper getGroupHelper() {
         return groupHelper;
     }
+    public Courses getCourse(){return course;}
+    public PersonalCourses getPersonalCourses(){return  personalCourses;}
+
 
 }
