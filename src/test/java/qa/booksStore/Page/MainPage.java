@@ -6,6 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -22,7 +23,9 @@ public class MainPage {
         PageFactory.initElements(wd, this);
     }
 
-
+    public void open() {
+        wd.get("http://qajava.skillbox.ru/search.html");
+    }
 
 
     @FindBy(name = "author")
@@ -54,10 +57,6 @@ public class MainPage {
     }
 
 
-    public void open() {
-        wd.get("http://qajava.skillbox.ru/search.html");
-    }
-
 
     @FindBy(css = ".show-results")
     public WebElement buttonShowFilter;
@@ -77,6 +76,17 @@ public class MainPage {
         String str = firstBookCosts.getText();
         return str;
     }
+
+    /**
+     * String str = firstBookCosts.getText();
+     *         String pattern = "[0-9]";
+     *         Pattern r = Pattern.compile(pattern);
+     *         Matcher m = r.matcher(str);
+     *         HashSet<String> ab = new HashSet<String>();
+     *         ab.add(m.toString());
+     *         return ab.toString();
+     */
+
 
     @FindBy(name = "fname")
     public WebElement nameBook;

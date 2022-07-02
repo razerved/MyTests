@@ -11,6 +11,7 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 public class MainPage {
+
     private WebDriver driver;
     public HeaderPanel hp;
     public BasketPage bp;
