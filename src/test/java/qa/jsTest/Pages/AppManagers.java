@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.time.Duration;
 
 public class AppManagers {
-    private WebDriver wd;
+    protected WebDriver wd;
     public WebDriverWait wt;
     //public HelperPage hp;
     public TaxiPage tx;
@@ -22,7 +22,7 @@ public class AppManagers {
         System.setProperty("webdriver.chrome.driver", "drivers\\\\chromedriver.exe");
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--start-maximized");
-        wd = new ChromeDriver();
+        wd = new ChromeDriver(options);
         wt = new WebDriverWait(wd, Duration.ofSeconds(3000));
 
         wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(5000));

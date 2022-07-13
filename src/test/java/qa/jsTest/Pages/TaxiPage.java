@@ -4,8 +4,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import qa.jsTest.TestBase;
 
 public class TaxiPage extends HelperPage {
     //private WebDriver wd;
@@ -16,25 +14,34 @@ public class TaxiPage extends HelperPage {
     }
 
 
-    @FindBy(css = "")
-    public WebElement dontNow;
+    /*@FindBy(css = "#date")
+    public WebElement setADate;
+    public By one = By.cssSelector("#date");
+    public By two = By.xpath("");*/
 
-    @FindBy(css = "")
-    public WebElement dontCare;
+    @FindBy(css = "[name='time']")
+    public WebElement setATime;
+
+    @FindBy(css = ".form-submit")
+    public WebElement submit;
+
+    public String cssDate = "#date";
 
 
-    public By one = By.cssSelector("");
-    public By two = By.xpath("");
-
-
-
-    public void openTaxiPage(){
-        wd.get("https://lm.skillbox.cc/qa_tester/module07/practice4/");
+    public void setDate(String date){
+        jS.executeScript(String.format
+                ("$(\"%s\").datepicker(\"setDate\", \"%s\")", cssDate, date));
     }
 
-    public void set(){
+    public String getDate(){
+        return String.valueOf(jS.executeScript
+                (String.format
+                        ("return $(\"%s\").datepicker(\"getDate\")", cssDate)));
+    }
 
 
+    public void setTime(String setTime){
+    setATime.sendKeys(setTime);
     }
 
 
