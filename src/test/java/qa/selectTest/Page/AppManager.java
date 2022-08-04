@@ -1,4 +1,4 @@
-package qa.booksStore.Page;
+package qa.selectTest.Page;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;

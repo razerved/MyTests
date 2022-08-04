@@ -22,9 +22,10 @@ public class HelperPage {
     }
 
 
-    public void openTaxiPage(){
+    public void openTaxiSite(){
         wd.get("https://lm.skillbox.cc/qa_tester/module07/practice4/");
     }
-
+    public void openNotesSite(){wd.get("http://qa.skillbox.ru/module15/bignotes/#/statistic");}
+    public void openWebsiteCallRequests(){wd.get("http://qa.skillbox.ru/module11/practice/feedbacksingle/");}
 
 }

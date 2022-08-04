@@ -1,8 +1,8 @@
-package qa.booksStore;
+package qa.selectTest;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import qa.booksStore.Page.AppManager;
+import qa.selectTest.Page.AppManager;
 
 import java.io.IOException;
 

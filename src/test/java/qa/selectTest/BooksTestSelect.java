@@ -1,4 +1,4 @@
-package qa.booksStore;
+package qa.selectTest;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;

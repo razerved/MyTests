@@ -17,6 +17,8 @@ public class AppManagers {
     public WebDriverWait wt;
     //public HelperPage hp;
     public TaxiPage tx;
+    public NotesPage np;
+    public WebsiteCallRequests wcr;
 
     public void init() {
         System.setProperty("webdriver.chrome.driver", "drivers\\\\chromedriver.exe");
@@ -29,6 +31,9 @@ public class AppManagers {
 
         //hp = new HelperPage(wd);
         tx = new TaxiPage(wd);
+        np = new NotesPage(wd);
+        wcr = new WebsiteCallRequests(wd);
+
     }
 
 
@@ -40,6 +45,7 @@ public class AppManagers {
 
     //public HelperPage getHp() {return hp;}
     public TaxiPage getTx(){return tx;}
-
+    public NotesPage getNp(){return np;}
+    public WebsiteCallRequests getWcr(){return wcr;}
 
 }
