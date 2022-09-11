@@ -106,13 +106,8 @@ public class WebsiteCallRequests extends HelperPage {
     }
 
     public void setCalendarDate(String data){
-        jS.executeScript("document." +
-                "getElementsByClassName('datepicker__main')[0].__vue__.setDate('%s');", data);
-    }
-
-    public void setCalendarDate1(){
-        jS.executeScript("document." +
-                "getElementsByClassName('datepicker__main')[0].__vue__.setDate('03/21/2022');");
+        jS.executeScript(String.format("document." +
+                "getElementsByClassName('datepicker__main')[0].__vue__.setDate('%s');", data));
     }
 
 

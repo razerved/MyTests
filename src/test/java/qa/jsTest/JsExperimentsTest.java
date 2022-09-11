@@ -104,7 +104,6 @@ public class JsExperimentsTest extends TestBase {
         day.get(2);*/
         //app.getWcr().getDays("4");
         //app.getWcr().setDay(2);
-        app.getWcr().setCalendarDate1();
         app.getWcr().setCalendarDate("09/11/2022");
         int i = 0;
     }
