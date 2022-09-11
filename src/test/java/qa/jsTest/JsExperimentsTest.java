@@ -7,6 +7,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.List;
 import java.util.stream.Stream;
 
 public class JsExperimentsTest extends TestBase {
@@ -41,7 +42,6 @@ public class JsExperimentsTest extends TestBase {
     }
 
 
-
     private static Stream<Arguments> timeArguments(){
         return Stream.of(
                 Arguments.arguments("12:00","16:00"),
@@ -55,7 +55,6 @@ public class JsExperimentsTest extends TestBase {
             //arrange
         app.getWcr().openWebsiteCallRequests();
             //act
-
         //String byDefaultTimeTo = app.getWcr().getTimeTo();
         /*String timeFrom = "12:00";
         String timeTo = "16:00";*/
@@ -63,7 +62,6 @@ public class JsExperimentsTest extends TestBase {
         app.getWcr().selectTimeTo(timeTo);
         String byTimeFrom = app.getWcr().getTimeFrom();
         String byTimeTo = app.getWcr().getTimeTo();
-
             //assert
         Assertions.assertAll(
                 () -> Assertions.assertEquals(timeFrom, byTimeFrom, "Error From/time not Equals"),
@@ -74,18 +72,49 @@ public class JsExperimentsTest extends TestBase {
 
 
 
-
-
-
+    private static Stream<Arguments> NumberCall(){
+        return Stream.of(
+                Arguments.arguments("9778007071","4958451221")
+        );
+    }
+    @ParameterizedTest
+    @MethodSource("NumberCall")
+    @DisplayName("3.5 Заявки на обратный звонок, WebsiteCallRequests_setPhoneNumber")
+    public void test4(String firstNumber, String secondNumber){
+        //arrange
+    app.getWcr().openWebsiteCallRequests();
+        //act
+    app.getWcr().setFieldPhone(firstNumber);
+    String exp = app.getWcr().getFieldPhone();
+    app.getWcr().setFieldPhone(secondNumber);
+    String exp2 = app.getWcr().getFieldPhone();
+        //assert
+    Assertions.assertAll(
+            ()-> Assertions.assertEquals(firstNumber,exp,"1-ый номер не сходится"),
+            ()-> Assertions.assertEquals(secondNumber,exp2,"2-ой номер не сходится")
+        );
+    }
 
     @Test
-    @DisplayName("WebsiteCallRequests_setDate")
-    public void test4(){
-        //arrange
-
-        //act
-
-        //assert
+    @DisplayName("3.5 Заявки на обратный звонок")
+    public void ret(){
+        app.getWcr().openWebsiteCallRequests();
+        //app.getWcr().openCalendar();
+        /*List<String> day = app.getWcr().getDays();
+        day.get(2);*/
+        //app.getWcr().getDays("4");
+        //app.getWcr().setDay(2);
+        app.getWcr().setCalendarDate1();
+        app.getWcr().setCalendarDate("09/11/2022");
+        int i = 0;
     }
+
+
+
+
+
+
+
+
 
 }

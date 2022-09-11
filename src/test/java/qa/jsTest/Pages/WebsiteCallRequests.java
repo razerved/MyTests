@@ -6,6 +6,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 public class WebsiteCallRequests extends HelperPage {
 
 
@@ -65,20 +70,56 @@ public class WebsiteCallRequests extends HelperPage {
     }
 
 
-
     /**
-     * Блок ввода номера телефона
+     * Блок ввода Номера телефона
      */
     //------------------------------------------------------------------------------------------------------------------
     @FindBy(xpath = "//input[@name='phone']")
     public WebElement fieldPhone;
 
+    public void setFieldPhone(String phone){
+        fieldPhone.sendKeys(phone);
+    }
+    public String getFieldPhone(){
+        return fieldPhone.getText();
+    }
 
-
-
+    /**
+     * Блок Календаря
+     */
     //------------------------------------------------------------------------------------------------------------------
+    @FindBy(xpath = "//div[@class='datepicker__calendar vdp-datepicker__calendar']/div")
+    public WebElement calendar;
+
+    @FindBy(xpath = "//div/span[@class='cell day' or @class='cell day today']")
+    public List<WebElement> days;
+
+    public void setDay(int i){ //не продуктивный вариант Не Юзать
+        days.get(i).click();
+    }
 
 
+
+    public void openCalendar(){
+        jS.executeScript("document." +
+                "getElementsByClassName('datepicker__field').datepicker.click();");
+    }
+
+    public void setCalendarDate(String data){
+        jS.executeScript("document." +
+                "getElementsByClassName('datepicker__main')[0].__vue__.setDate('%s');", data);
+    }
+
+    public void setCalendarDate1(){
+        jS.executeScript("document." +
+                "getElementsByClassName('datepicker__main')[0].__vue__.setDate('03/21/2022');");
+    }
+
+
+    /**
+     * Блок Кнопок
+     */
+    //------------------------------------------------------------------------------------------------------------------
 
 
 
