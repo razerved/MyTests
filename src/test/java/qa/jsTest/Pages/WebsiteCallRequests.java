@@ -6,10 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class WebsiteCallRequests extends HelperPage {
 
@@ -92,13 +89,25 @@ public class WebsiteCallRequests extends HelperPage {
     public WebElement calendar;
 
     @FindBy(xpath = "//div/span[@class='cell day' or @class='cell day today']")
-    public List<WebElement> days;
+    public List<WebElement> days; //не продуктивный вариант Не Юзать
+
+    public String CssDateCalendar = ".vdp-datepicker.datepicker__main";
+    /*@FindBy(css = "input[name='datepicker']") NOT WORKING
+    public WebElement currentDate;*/
+    /*public String getCurrentDateCalendar(){  NOT WORKING
+        return currentDate.getText();
+    }*/
 
     public void setDay(int i){ //не продуктивный вариант Не Юзать
         days.get(i).click();
     }
 
 
+    public String getCurrentCalendarDate(){
+        return String.valueOf(jS.executeScript
+                ("return document." +
+                        "getElementsByClassName('datepicker__main')[0].__vue__.selectedDate", CssDateCalendar));
+    }
 
     public void openCalendar(){
         jS.executeScript("document." +
@@ -109,6 +118,7 @@ public class WebsiteCallRequests extends HelperPage {
         jS.executeScript(String.format("document." +
                 "getElementsByClassName('datepicker__main')[0].__vue__.setDate('%s');", data));
     }
+//2022-09-11T21:00:00.000Z
 
 
     /**

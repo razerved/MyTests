@@ -7,7 +7,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.util.List;
 import java.util.stream.Stream;
 
 public class JsExperimentsTest extends TestBase {
@@ -50,7 +49,7 @@ public class JsExperimentsTest extends TestBase {
     }
     @ParameterizedTest
     @MethodSource("timeArguments")
-    @DisplayName("Select_Parametrized_WebsiteCallRequests_setTime_test")
+    @DisplayName("3.5 Заметки, Select_Parametrized_WebsiteCallRequests_setTime_test")
     public void test3(String timeFrom, String timeTo) {
             //arrange
         app.getWcr().openWebsiteCallRequests();
@@ -95,17 +94,20 @@ public class JsExperimentsTest extends TestBase {
         );
     }
 
-    @Test
+    private static Stream<Arguments> Data(){
+        return Stream.of(
+                Arguments.arguments("09/12/2022","01/11/2022")
+        );
+    }
+    @ParameterizedTest
+    @MethodSource("Data")
     @DisplayName("3.5 Заявки на обратный звонок")
-    public void ret(){
+    public void ret(String data1, String data2){
         app.getWcr().openWebsiteCallRequests();
-        //app.getWcr().openCalendar();
-        /*List<String> day = app.getWcr().getDays();
-        day.get(2);*/
-        //app.getWcr().getDays("4");
-        //app.getWcr().setDay(2);
-        app.getWcr().setCalendarDate("09/11/2022");
-        int i = 0;
+        app.getWcr().setCalendarDate(data1);
+        String terest = app.getWcr().getCurrentCalendarDate();
+        int a = 1;
+
     }
 
 
