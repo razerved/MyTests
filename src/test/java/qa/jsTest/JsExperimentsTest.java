@@ -43,8 +43,9 @@ public class JsExperimentsTest extends TestBase {
 
     private static Stream<Arguments> timeArguments(){
         return Stream.of(
-                Arguments.arguments("12:00","16:00"),
-                Arguments.arguments("13:00","18:00")
+                Arguments.arguments("12:00", "16:00"),
+                Arguments.arguments("13:00", "18:00"),
+                Arguments.arguments("00:00", "01:00")
         );
     }
     @ParameterizedTest
@@ -61,7 +62,14 @@ public class JsExperimentsTest extends TestBase {
         app.getWcr().selectTimeTo(timeTo);
         String byTimeFrom = app.getWcr().getTimeFrom();
         String byTimeTo = app.getWcr().getTimeTo();
-            //assert
+        String message = "К сожалению, в это время мы отдыхаем, выберите другое время";
+
+        //assert
+        if( byTimeFrom.equals("00:00") && byTimeTo.equals("01:00") ){
+            String errorMessage = app.getWcr().getErrMessage();
+            Assertions.assertEquals(errorMessage, message,
+                    "выводимое уведомление отличается");
+        }
         Assertions.assertAll(
                 () -> Assertions.assertEquals(timeFrom, byTimeFrom, "Error From/time not Equals"),
                 () -> Assertions.assertEquals(timeTo, byTimeTo, "Error To/time not Equals")
@@ -94,7 +102,7 @@ public class JsExperimentsTest extends TestBase {
         );
     }
 
-    private static Stream<Arguments> Data(){
+    /*private static Stream<Arguments> Data(){ -- Баг с временной зоной, проставленная дата Js кодом, с Front возврощается корявой
         return Stream.of(
                 Arguments.arguments("09/12/2022","01/11/2022")
         );
@@ -108,7 +116,7 @@ public class JsExperimentsTest extends TestBase {
         String terest = app.getWcr().getCurrentCalendarDate();
         int a = 1;
 
-    }
+    }*/
 
 
 

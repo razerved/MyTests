@@ -20,6 +20,21 @@ public class AppManagers {
     public NotesPage np;
     public WebsiteCallRequests wcr;
 
+    public AppManagers(WebDriver wd,
+                       WebDriverWait wt,
+                       TaxiPage tx,
+                       NotesPage np,
+                       WebsiteCallRequests wcr) {
+        this.wd = wd;
+        this.wt = wt;
+        this.tx = tx;
+        this.np = np;
+        this.wcr = wcr;
+    }
+    public AppManagers(){
+
+    }
+
     public void init() {
         System.setProperty("webdriver.chrome.driver", "drivers\\\\chromedriver.exe");
         ChromeOptions options = new ChromeOptions();

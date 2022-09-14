@@ -1,5 +1,6 @@
 package qa.jsTest.Pages;
 
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -30,12 +31,18 @@ public class WebsiteCallRequests extends HelperPage {
     @FindBy(xpath = "//select[@name='from']")
     public WebElement timeFrom;
 
+    @FindBy(css = ".timePicker__message span")
+    public WebElement errMessage;
+
     /*@FindBy(xpath = "//div[@class='timePicker__to']//div[@class='baseSelect__header baseSelect__header--changed']/span")
     public WebElement defaultTimeTo;*/
 
     @FindBy(xpath = "//select[@name ='to']")
     public WebElement timeTo;
 
+    public String getErrMessage(){
+        return errMessage.getText();
+    }
 
     public void selectTimeFrom(String value){
         jS.executeScript("document." +
@@ -118,6 +125,7 @@ public class WebsiteCallRequests extends HelperPage {
         jS.executeScript(String.format("document." +
                 "getElementsByClassName('datepicker__main')[0].__vue__.setDate('%s');", data));
     }
+
 //2022-09-11T21:00:00.000Z
 
 
