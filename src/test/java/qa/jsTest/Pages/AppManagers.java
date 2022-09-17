@@ -19,17 +19,20 @@ public class AppManagers {
     public TaxiPage tx;
     public NotesPage np;
     public WebsiteCallRequests wcr;
+    public Webinars wb;
 
     public AppManagers(WebDriver wd,
                        WebDriverWait wt,
                        TaxiPage tx,
                        NotesPage np,
-                       WebsiteCallRequests wcr) {
+                       WebsiteCallRequests wcr,
+                       Webinars wb) {
         this.wd = wd;
         this.wt = wt;
         this.tx = tx;
         this.np = np;
         this.wcr = wcr;
+        this.wb = wb;
     }
     public AppManagers(){
 
@@ -48,6 +51,7 @@ public class AppManagers {
         tx = new TaxiPage(wd);
         np = new NotesPage(wd);
         wcr = new WebsiteCallRequests(wd);
+        wb = new Webinars(wd);
 
     }
 
@@ -62,5 +66,6 @@ public class AppManagers {
     public TaxiPage getTx(){return tx;}
     public NotesPage getNp(){return np;}
     public WebsiteCallRequests getWcr(){return wcr;}
+    public Webinars getWb(){return wb;}
 
 }

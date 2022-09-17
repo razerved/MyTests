@@ -6,10 +6,13 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import java.util.stream.Stream;
 
 public class JsExperimentsTest extends TestBase {
+    protected WebDriver wd;
 
     @Test
     @DisplayName("simpleTestJs_Taxi")
@@ -118,6 +121,19 @@ public class JsExperimentsTest extends TestBase {
 
     }*/
 
+
+    @Test
+    @DisplayName("3.5 Сайт с вебинарами, checking_dropdown_menu")
+    public void test5(){
+        //arrange
+        app.getWb().openWebinars();
+        //action
+        app.getWb().holdAboutSkillboxJs();
+        app.getWb().clik(app.getWb().aboutPlatform);
+        String i = wd.getCurrentUrl();
+        //assert
+
+    }
 
 
 

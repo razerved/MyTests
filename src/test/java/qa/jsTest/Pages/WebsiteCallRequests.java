@@ -34,9 +34,6 @@ public class WebsiteCallRequests extends HelperPage {
     @FindBy(css = ".timePicker__message span")
     public WebElement errMessage;
 
-    /*@FindBy(xpath = "//div[@class='timePicker__to']//div[@class='baseSelect__header baseSelect__header--changed']/span")
-    public WebElement defaultTimeTo;*/
-
     @FindBy(xpath = "//select[@name ='to']")
     public WebElement timeTo;
 
@@ -126,32 +123,10 @@ public class WebsiteCallRequests extends HelperPage {
                 "getElementsByClassName('datepicker__main')[0].__vue__.setDate('%s');", data));
     }
 
-//2022-09-11T21:00:00.000Z
-
-
     /**
      * Блок Кнопок
      */
     //------------------------------------------------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-    public void selectDate(String date){
-
-    }
-
-    public String getDate(){
-        return "";
-    }
-
-
 
 
 
