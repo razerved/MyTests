@@ -22,6 +22,10 @@ public class HelperPage {
         jS = (JavascriptExecutor)wd;
     }
 
+    public String getCurrentURL(){
+        return wd.getCurrentUrl();
+    }
+
 
     public void clik (WebElement elem){
         elem.click();

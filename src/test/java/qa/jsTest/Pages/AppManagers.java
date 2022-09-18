@@ -13,9 +13,9 @@ import java.io.IOException;
 import java.time.Duration;
 
 public class AppManagers {
-    protected WebDriver wd;
+    private WebDriver wd;
     public WebDriverWait wt;
-    //public HelperPage hp;
+    public HelperPage hp;
     public TaxiPage tx;
     public NotesPage np;
     public WebsiteCallRequests wcr;
@@ -34,9 +34,15 @@ public class AppManagers {
         this.wcr = wcr;
         this.wb = wb;
     }
-    public AppManagers(){
-
+    public AppManagers(WebDriver wd){
+        this.wd = wd;
+        this.wt = wt;
+        this.tx = tx;
+        this.np = np;
+        this.wcr = wcr;
+        this.wb = wb;
     }
+    public AppManagers(){}
 
     public void init() {
         System.setProperty("webdriver.chrome.driver", "drivers\\\\chromedriver.exe");
@@ -47,7 +53,7 @@ public class AppManagers {
 
         wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(5000));
 
-        //hp = new HelperPage(wd);
+        hp = new HelperPage(wd);
         tx = new TaxiPage(wd);
         np = new NotesPage(wd);
         wcr = new WebsiteCallRequests(wd);
@@ -62,7 +68,7 @@ public class AppManagers {
         wd.quit();
     }
 
-    //public HelperPage getHp() {return hp;}
+    public HelperPage getHp() {return hp;}
     public TaxiPage getTx(){return tx;}
     public NotesPage getNp(){return np;}
     public WebsiteCallRequests getWcr(){return wcr;}

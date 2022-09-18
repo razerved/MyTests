@@ -27,6 +27,7 @@ public class MainPage {
         pc = new ProductCatalogPage(driver);
         bonus = new BonusProgram(driver);
     }
+    public MainPage(){}
 
     public String urlMain = "http://intershop6.skillbox.ru/";
     public String urlRegister = "http://intershop6.skillbox.ru/register/";
