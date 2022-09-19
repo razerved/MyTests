@@ -31,7 +31,8 @@ public class Webinars extends HelperPage {
     @FindBy(css = ".toggle-menu.header__toggle.toggle-menu--small")
     public WebElement sif;
 
-
+    @FindBy(css = "a[href*='skillbox.ru/courses/']")
+    public WebElement allCourses;
 
 
     public void holdAboutSkillboxJs(/*String value*/){
@@ -57,11 +58,9 @@ public class Webinars extends HelperPage {
     }
 
 
-
     public void goToPlaylist(){
             clik(playlists);
     }
-
 
 
     public boolean isSuccessDisplayed() {
@@ -74,6 +73,7 @@ public class Webinars extends HelperPage {
             wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         }
     }
+
 
     public void waitForDisplayed(By element) {
         var newWait = new WebDriverWait(wd, Duration.ofSeconds(7));

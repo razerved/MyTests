@@ -158,13 +158,13 @@ public class JsExperimentsTest extends TestBase {
         Assertions.assertEquals("Центр карьеры",currentTitel,"новая страница \"О платформе\" не открылась");
     }
     @Test
-    @DisplayName("3.5 Сайт с вебинарами, checking_dropdown_menu_about_playlists")
+    @DisplayName("3.5 Сайт с вебинарами, checking_dropdown_menu_about_AllCourses")
     public void test7() throws InterruptedException {
         //arrange
         app.getWb().openWebinars();
         //app.wait.until(wd -> !app.getWb().playlists.isDisplayed());
         app.getWb().clik(app.getWb().sif);
-
+        app.getWb().allCourses.isDisplayed();
     }
 
 
