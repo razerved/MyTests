@@ -1,12 +1,10 @@
 package qa.jsTest.Pages;
 
-import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -26,6 +24,12 @@ public class HelperPage {
         return wd.getCurrentUrl();
     }
 
+    public void switchToTabs(){
+        wd.switchTo().window(wd.getWindowHandle());
+    }
+    public String containsText(String value){
+        return wd.findElement(By.cssSelector(value)).getText();
+    }
 
     public void clik (WebElement elem){
         elem.click();
@@ -45,3 +49,17 @@ public class HelperPage {
     public void openWebinars(){wd.get("https://live.skillbox.ru/");}
 
 }
+
+
+
+/*try {
+
+        String winHandleBefore = driver.getWindowHandle();
+
+        for(String winHandle : driver.getWindowHandles()){
+        driver.switchTo().window(winHandle);
+        String act = driver.getCurrentUrl();
+        }
+        }catch(Exception e){
+        System.out.println("fail");
+        }*/

@@ -14,7 +14,7 @@ import java.time.Duration;
 
 public class AppManagers {
     private WebDriver wd;
-    public WebDriverWait wt;
+    public WebDriverWait wait;
     public HelperPage hp;
     public TaxiPage tx;
     public NotesPage np;
@@ -28,15 +28,7 @@ public class AppManagers {
                        WebsiteCallRequests wcr,
                        Webinars wb) {
         this.wd = wd;
-        this.wt = wt;
-        this.tx = tx;
-        this.np = np;
-        this.wcr = wcr;
-        this.wb = wb;
-    }
-    public AppManagers(WebDriver wd){
-        this.wd = wd;
-        this.wt = wt;
+        this.wait = wait;
         this.tx = tx;
         this.np = np;
         this.wcr = wcr;
@@ -49,7 +41,7 @@ public class AppManagers {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--start-maximized");
         wd = new ChromeDriver(options);
-        wt = new WebDriverWait(wd, Duration.ofSeconds(3000));
+        wait = new WebDriverWait(wd, Duration.ofSeconds(3000));
 
         wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(5000));
 
@@ -59,6 +51,17 @@ public class AppManagers {
         wcr = new WebsiteCallRequests(wd);
         wb = new Webinars(wd);
 
+
+        /*SSLEngine request = null;
+        HttpSession session= (HttpSession) request.getSession();
+        session.setMaxInactiveInterval(604800);
+        session.setAttribute("loggedOnUser", true);
+
+        Cookie cookie = new Cookie("JSESSIONID", session.getId());
+        cookie.setMaxAge(Integer.MAX_VALUE);
+        HttpServletResponse response = null;
+        response.addCookie(cookie);*/
+
     }
 
 
@@ -67,6 +70,7 @@ public class AppManagers {
         FileUtils.copyFile(sourceFile, new File("F:\\screenShotForTest\\screenshot.png"));
         wd.quit();
     }
+
 
     public HelperPage getHp() {return hp;}
     public TaxiPage getTx(){return tx;}

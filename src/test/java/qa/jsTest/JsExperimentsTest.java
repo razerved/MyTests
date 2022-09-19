@@ -7,11 +7,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import qa.jsTest.Pages.Webinars;
+
 
 import java.util.stream.Stream;
 
@@ -126,30 +122,50 @@ public class JsExperimentsTest extends TestBase {
     }*/
 
 
+   /* private static Stream<Arguments> windowTabs(){
+        return Stream.of(
+                Arguments.arguments("О платформе","Центр карьеры")
+        );
+    }
+    @ParameterizedTest
+    @MethodSource("windowTabs")*/
     @Test
-    @DisplayName("3.5 Сайт с вебинарами, checking_dropdown_menu")
-    public void test5(){
+    @DisplayName("3.5 Сайт с вебинарами, checking_dropdown_menu_about_Platform")
+    public void test5(/*String expectPlatform, String expectCareer*/){
         //arrange
         app.getWb().openWebinars();
         //action
         app.getWb().holdAboutSkillboxJs();
         app.getWb().clik(app.getWb().aboutPlatform);
-        String i = "";
-        System.out.println(i);
-
+        app.getWb().switchToTabs();
+        String currentTitel = app.getWcr().containsText(".header-about__title");
+        //String actualPlatform = app.getWb().getCurrentURL();
+        //assert
+         Assertions.assertEquals("О платформе",currentTitel,"новая страница \"О платформе\" не открылась");
+    }
+    @Test
+    @DisplayName("3.5 Сайт с вебинарами, checking_dropdown_menu_about_Career")
+    public void test6(){
+        //arrange
+        app.getWb().openWebinars();
+        //action
+        app.getWb().holdAboutSkillboxJs();
+        app.getWb().clik(app.getWb().centerCareer);
+        app.getWb().switchToTabs();
+        String currentTitel = app.getWcr().containsText(".header-about__title");
+        //String actualPlatform = app.getWb().getCurrentURL();
+        //assert
+        Assertions.assertEquals("Центр карьеры",currentTitel,"новая страница \"О платформе\" не открылась");
+    }
+    @Test
+    @DisplayName("3.5 Сайт с вебинарами, checking_dropdown_menu_about_playlists")
+    public void test7() throws InterruptedException {
+        //arrange
+        app.getWb().openWebinars();
+        //app.wait.until(wd -> !app.getWb().playlists.isDisplayed());
+        app.getWb().clik(app.getWb().sif);
 
     }
 
-/*try {
-
-        String winHandleBefore = driver.getWindowHandle();
-
-        for(String winHandle : driver.getWindowHandles()){
-            driver.switchTo().window(winHandle);
-            String act = driver.getCurrentUrl();
-        }
-    }catch(Exception e){
-        System.out.println("fail");
-    }*/
 
 }
