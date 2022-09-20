@@ -13,12 +13,16 @@ public class HelperPage {
 
     protected WebDriver wd;
     public JavascriptExecutor jS;
+    protected WebDriverWait wait;
 
-    public HelperPage(WebDriver wd) {
+    public HelperPage(WebDriver wd, WebDriverWait wait) {
         this.wd = wd;
+        this.wait = wait;
         PageFactory.initElements(wd, this);
         jS = (JavascriptExecutor)wd;
     }
+    public HelperPage(WebDriver wd){}
+    public HelperPage(){}
 
     public String getCurrentURL(){
         return wd.getCurrentUrl();

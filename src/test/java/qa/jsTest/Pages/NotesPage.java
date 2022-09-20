@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import qa.jsTest.TestBase;
 
 import java.util.List;
@@ -16,8 +17,8 @@ public class NotesPage extends HelperPage {
 
 
 
-    public NotesPage(WebDriver wd) {
-        super(wd);
+    public NotesPage(WebDriver wd, WebDriverWait wait) {
+        super(wd, wait);
     }
 
     @FindBy(css = "pageStatistic__date")

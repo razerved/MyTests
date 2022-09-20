@@ -4,12 +4,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class TaxiPage extends HelperPage {
     //private WebDriver wd;
 
-    public TaxiPage(WebDriver wd) {
-        super(wd);
+    public TaxiPage(WebDriver wd, WebDriverWait wait) {
+        super(wd, wait);
         //PageFactory.initElements(wd, this);
     }
 
@@ -38,6 +39,7 @@ public class TaxiPage extends HelperPage {
                 (String.format
                         ("return $(\"%s\").datepicker(\"getDate\")", cssDate)));
     }
+
 
 
     public void setTime(String setTime){

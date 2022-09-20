@@ -20,6 +20,7 @@ public class JsExperimentsTest extends TestBase {
             //arrange
         app.getTx().openTaxiSite();
         String now = app.getTx().getDate();
+        //app.wait.until(x-> !);
             //act
         app.getTx().setDate("01/02/2022");
         app.getTx().setTime("01:30");

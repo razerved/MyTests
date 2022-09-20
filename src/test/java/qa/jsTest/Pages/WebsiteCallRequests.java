@@ -6,20 +6,15 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
 public class WebsiteCallRequests extends HelperPage {
 
-
-    public WebsiteCallRequests(WebDriver wd) {
-        super(wd);
+    public WebsiteCallRequests(WebDriver wd, WebDriverWait wait) {
+        super(wd, wait);
     }
-
-
-    public By cls = By.cssSelector(""); // чисто-так
-
-    public String someClassCss = "";    // чисто-так
 
     /**
      * Блок Установки Вермени
@@ -36,6 +31,13 @@ public class WebsiteCallRequests extends HelperPage {
 
     @FindBy(xpath = "//select[@name ='to']")
     public WebElement timeTo;
+
+    @FindBy(css = ".firstModul__col:nth-of-type(2) .h2")
+    public WebElement resultDate;
+
+    @FindBy(css = ".firstModul__col:nth-of-type(1) .h2")
+    public WebElement resultTimePeriod;
+
 
     public String getErrMessage(){
         return errMessage.getText();
@@ -70,6 +72,15 @@ public class WebsiteCallRequests extends HelperPage {
         //return defaultTimeTo.getText();
     }
 
+    public String getResultDate(){
+         wait.until(x ->!resultDate.getText().isEmpty());
+         return resultDate.getText();
+    }
+
+    public String getResultPeriod(){
+        wait.until(x ->!resultTimePeriod.getText().isEmpty());
+        return resultTimePeriod.getText();
+    }
 
     /**
      * Блок ввода Номера телефона

@@ -22,13 +22,13 @@ public class AppManagers {
     public Webinars wb;
 
     public AppManagers(WebDriver wd,
-                       WebDriverWait wt,
+                       WebDriverWait wait,
                        TaxiPage tx,
                        NotesPage np,
                        WebsiteCallRequests wcr,
                        Webinars wb) {
-        this.wd = wd;
         this.wait = wait;
+        this.wd = wd;
         this.tx = tx;
         this.np = np;
         this.wcr = wcr;
@@ -45,12 +45,11 @@ public class AppManagers {
 
         wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(5000));
 
-        hp = new HelperPage(wd);
-        tx = new TaxiPage(wd);
-        np = new NotesPage(wd);
-        wcr = new WebsiteCallRequests(wd);
+        hp = new HelperPage(wd,wait);
+        tx = new TaxiPage(wd, wait);
+        np = new NotesPage(wd,wait);
+        wcr = new WebsiteCallRequests(wd, wait);
         wb = new Webinars(wd);
-
 
         /*SSLEngine request = null;
         HttpSession session= (HttpSession) request.getSession();
