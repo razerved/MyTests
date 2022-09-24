@@ -21,7 +21,7 @@ public class HelperPage {
         PageFactory.initElements(wd, this);
         jS = (JavascriptExecutor)wd;
     }
-    public HelperPage(WebDriver wd){}
+    //public HelperPage(WebDriver wd){}
     public HelperPage(){}
 
     public String getCurrentURL(){

@@ -12,8 +12,8 @@ import java.util.NoSuchElementException;
 public class Webinars extends HelperPage {
 
 
-    public Webinars(WebDriver wd) {
-        super(wd);
+    public Webinars(WebDriver wd, WebDriverWait wait) {
+        super(wd, wait);
     }
 
     @FindBy(css = "")

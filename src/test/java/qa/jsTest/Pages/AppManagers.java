@@ -49,7 +49,7 @@ public class AppManagers {
         tx = new TaxiPage(wd, wait);
         np = new NotesPage(wd,wait);
         wcr = new WebsiteCallRequests(wd, wait);
-        wb = new Webinars(wd);
+        wb = new Webinars(wd, wait);
 
         /*SSLEngine request = null;
         HttpSession session= (HttpSession) request.getSession();
