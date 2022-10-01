@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.openqa.selenium.By;
 
 
 import java.util.stream.Stream;
@@ -83,13 +82,13 @@ public class JsExperimentsTest extends TestBase {
 
 
 
-    private static Stream<Arguments> NumberCall(){
+    private static Stream<Arguments> numberCall(){
         return Stream.of(
                 Arguments.arguments("9778007071","4958451221")
         );
     }
     @ParameterizedTest
-    @MethodSource("NumberCall")
+    @MethodSource("numberCall")
     @DisplayName("3.5 Заявки на обратный звонок, WebsiteCallRequests_setPhoneNumber")
     public void test4(String firstNumber, String secondNumber){
         //arrange

@@ -51,6 +51,8 @@ public class HelperPage {
     public void openNotesSite(){wd.get("http://qa.skillbox.ru/module15/bignotes/#/statistic");}
     public void openWebsiteCallRequests(){wd.get("http://qa.skillbox.ru/module11/practice/feedbacksingle/");}
     public void openWebinars(){wd.get("https://live.skillbox.ru/");}
+    public void openIntersShop(){wd.get("http://intershop5.skillbox.ru/");}
+    public void openDatebook(){wd.get("http://qa.skillbox.ru/module15/bignotes/#/");}
 
 }
 

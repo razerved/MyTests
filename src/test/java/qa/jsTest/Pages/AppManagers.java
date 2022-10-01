@@ -20,13 +20,15 @@ public class AppManagers {
     public NotesPage np;
     public WebsiteCallRequests wcr;
     public Webinars wb;
+    public IntersShop is;
 
     public AppManagers(WebDriver wd,
                        WebDriverWait wait,
                        TaxiPage tx,
                        NotesPage np,
                        WebsiteCallRequests wcr,
-                       Webinars wb) {
+                       Webinars wb,
+                       IntersShop is) {
         this.wait = wait;
         this.wd = wd;
         this.tx = tx;
@@ -50,6 +52,7 @@ public class AppManagers {
         np = new NotesPage(wd,wait);
         wcr = new WebsiteCallRequests(wd, wait);
         wb = new Webinars(wd, wait);
+        is = new IntersShop(wd, wait);
 
         /*SSLEngine request = null;
         HttpSession session= (HttpSession) request.getSession();
@@ -76,5 +79,6 @@ public class AppManagers {
     public NotesPage getNp(){return np;}
     public WebsiteCallRequests getWcr(){return wcr;}
     public Webinars getWb(){return wb;}
+    public IntersShop getIs(){return is;}
 
 }
