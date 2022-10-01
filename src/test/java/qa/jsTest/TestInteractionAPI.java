@@ -65,20 +65,26 @@ public class TestInteractionAPI extends TestBase {
 
 
         @Test
-        @DisplayName("")
+        @DisplayName("Check_scrollUp_element")
         public void test2(){
-            //
-            app.getHp().openIntersShop();
-            //
-
-            //
-
-
+            //arrange
+            app.getIs().openIntersShop();
+            //action
+            app.getIs().scrollDown();
+            //assert
+            Assertions.assertTrue(app.getIs().scrollUp.isDisplayed(),
+                    "Елемент \"прокрутки вверх\" не отоброжается");
         }
 
 
 
+        @Test
+        @DisplayName("еще незнаю")
+        public void test3(){
 
+
+
+        }
 
 
 
