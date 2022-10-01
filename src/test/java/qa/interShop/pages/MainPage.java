@@ -11,6 +11,7 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 public class MainPage {
+
     private WebDriver driver;
     public HeaderPanel hp;
     public BasketPage bp;
@@ -26,6 +27,7 @@ public class MainPage {
         pc = new ProductCatalogPage(driver);
         bonus = new BonusProgram(driver);
     }
+    public MainPage(){}
 
     public String urlMain = "http://intershop6.skillbox.ru/";
     public String urlRegister = "http://intershop6.skillbox.ru/register/";

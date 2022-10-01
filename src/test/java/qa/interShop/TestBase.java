@@ -22,7 +22,7 @@ public class TestBase {
     protected WebDriver driver;
     public WebDriverWait wait;
 
-    /*public MainPage page;*/
+    public MainPage page = new MainPage(driver);
 
     @BeforeEach
     public void setUp() throws IOException {
