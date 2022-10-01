@@ -1,9 +1,12 @@
 package qa.jsTest.Pages;
 
+import org.apache.commons.compress.harmony.pack200.NewAttribute;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -12,6 +15,12 @@ public class IntersShop extends HelperPage{
     public IntersShop(WebDriver wd, WebDriverWait wait) {
         super(wd, wait);
     }
+
+    @FindBy(tagName = "html")
+    public WebElement page;
+
+    @FindBy(id = "ak-top")
+    public WebElement scrollUp;
 
     @FindBy(css = ".menu>li:nth-of-type(2)")
     public WebElement catalog;
@@ -51,7 +60,19 @@ public class IntersShop extends HelperPage{
     }
 
 
+    public void downForPage(){
+        new Actions(wd)
+                .moveToElement(scrollUp)
+                .perform();
+    }
 
+    public void scrollDown(){
+        for (int i = 0; i < 100; i++){
+        page.sendKeys(Keys.ARROW_DOWN);
+
+        }
+        scrollUp.isDisplayed();
+    }
 
 
     public void tes2(){
