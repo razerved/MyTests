@@ -67,11 +67,11 @@ public class TestInteractionAPI extends TestBase {
         @Test
         @DisplayName("Check_scrollUp_element")
         public void test2(){
-            //
+            //arrange
             app.getIs().openIntersShop();
-            //
+            //action
             app.getIs().scrollDown();
-            //
+            //assert
             Assertions.assertTrue(app.getIs().scrollUp.isDisplayed(),
                     "Елемент \"прокрутки вверх\" не отоброжается");
         }
@@ -80,7 +80,11 @@ public class TestInteractionAPI extends TestBase {
 
         @Test
         @DisplayName("еще незнаю")
-        public void test3(){}
+        public void test3(){
+
+
+
+        }
 
 
 
