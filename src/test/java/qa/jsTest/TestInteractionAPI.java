@@ -8,7 +8,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.lang.reflect.Array;
 import java.util.stream.Stream;
 
 public class TestInteractionAPI extends TestBase {
@@ -81,7 +80,9 @@ public class TestInteractionAPI extends TestBase {
         @Test
         @DisplayName("еще незнаю")
         public void test3(){
-
+        app.getDb().openDatebook();
+        app.getDb().addRandomNotes(2);
+        app.getDb().deleteNotes(1);
 
 
         }
