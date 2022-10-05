@@ -81,8 +81,12 @@ public class TestInteractionAPI extends TestBase {
         @DisplayName("еще незнаю")
         public void test3(){
         app.getDb().openDatebook();
-        app.getDb().addRandomNotes(2);
+        app.getDb().addRandomNotes(10);
         app.getDb().deleteNotes(1);
+        Assertions.assertAll(
+                ()-> Assertions.assertTrue(app.getDb().isNoteDisplayed(11), "не отображается 1-ая дефольтная запись"),
+                ()-> Assertions.assertTrue(app.getDb().isNoteDisplayed(12), "не отображается 2-ая дефольтная запись")
+        );
 
 
         }
