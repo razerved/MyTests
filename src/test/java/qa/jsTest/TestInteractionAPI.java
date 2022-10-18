@@ -78,7 +78,7 @@ public class TestInteractionAPI extends TestBase {
 
 
         @Test
-        @DisplayName("еще незнаю")
+        @DisplayName("create_ten_Notes_and_delete_firstOnList_check_defaultNotes")
         public void test3(){
         app.getDb().openDatebook();
         app.getDb().addRandomNotes(10);

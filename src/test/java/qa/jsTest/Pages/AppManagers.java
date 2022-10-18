@@ -22,6 +22,7 @@ public class AppManagers {
     public Webinars wb;
     public IntersShop is;
     public Datebook db;
+    public ParrotPage pp;
 
     public AppManagers(WebDriver wd,
                        WebDriverWait wait,
@@ -30,7 +31,8 @@ public class AppManagers {
                        WebsiteCallRequests wcr,
                        Webinars wb,
                        IntersShop is,
-                       Datebook db) {
+                       Datebook db,
+                       ParrotPage pp) {
         this.wait = wait;
         this.wd = wd;
         this.tx = tx;
@@ -56,6 +58,7 @@ public class AppManagers {
         wb = new Webinars(wd, wait);
         is = new IntersShop(wd, wait);
         db = new Datebook(wd,wait);
+        pp = new ParrotPage(wd, wait);
 
         /*SSLEngine request = null;
         HttpSession session= (HttpSession) request.getSession();
@@ -84,5 +87,6 @@ public class AppManagers {
     public Webinars getWb(){return wb;}
     public IntersShop getIs(){return is;}
     public Datebook getDb(){return db;}
+    public ParrotPage getPp(){return pp;}
 
 }

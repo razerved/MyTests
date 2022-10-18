@@ -4,9 +4,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.nio.channels.AcceptPendingException;
 import java.time.Duration;
 
 public class HelperPage {
@@ -28,9 +30,18 @@ public class HelperPage {
         return wd.getCurrentUrl();
     }
 
-    public void switchToTabs(){
+    /*public void switchToTabs(){
         wd.switchTo().window(wd.getWindowHandle());
+    }*/
+    public String switchToNewWindow(){
+        //String mainPage = wd.getWindowHandle();
+            for (String tab : wd.getWindowHandles()){
+                wd.switchTo().window(tab);
+                //wd.switchTo().window(mainPage);
+        }
+        return wd.getCurrentUrl();
     }
+
     public String containsText(String value){
         return wd.findElement(By.cssSelector(value)).getText();
     }
@@ -45,6 +56,15 @@ public class HelperPage {
     }
 
 
+    public void switchToIFrame(WebElement childWindow){
+        wd.switchTo().frame(childWindow);
+    }
+
+    public void returnToIFrameParent(){
+        wd.switchTo().defaultContent();
+    }
+
+
     public void openTaxiSite(){
         wd.get("https://lm.skillbox.cc/qa_tester/module07/practice4/");
     }
@@ -53,6 +73,7 @@ public class HelperPage {
     public void openWebinars(){wd.get("https://live.skillbox.ru/");}
     public void openIntersShop(){wd.get("http://intershop5.skillbox.ru/");}
     public void openDatebook(){wd.get("http://qa.skillbox.ru/module15/bignotes/#/");}
+    public void openParrotPage(){wd.get("http://qajava.skillbox.ru/module5/homework/");}
 
 }
 
