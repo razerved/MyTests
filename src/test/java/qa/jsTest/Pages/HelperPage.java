@@ -1,13 +1,14 @@
 package qa.jsTest.Pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.lang.reflect.Array;
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class HelperPage {
 
@@ -28,9 +29,45 @@ public class HelperPage {
         return wd.getCurrentUrl();
     }
 
-    public void switchToTabs(){
-        wd.switchTo().window(wd.getWindowHandle());
+
+    public void switchToNewWindow(){
+        //String mainPage = wd.getWindowHandle();
+            for (String tab : wd.getWindowHandles()){
+                wd.switchTo().window(tab);
+                //wd.switchTo().window(mainPage);
+        }
+        //return wd.getCurrentUrl();
     }
+
+    public void mySwitchBetweenTwoPages(int i){
+        ArrayList<String> tab = new ArrayList<>(wd.getWindowHandles());
+        wd.switchTo().window(tab.get(i));
+    }
+
+    /*public void returnMainWindow(){
+        String mainPage = wd.getWindowHandle();
+        for (String tab : wd.getWindowHandles()){
+            wd.switchTo().window(tab).close();
+            wd.switchTo().window(mainPage);
+        }
+    }*/
+
+    public int switchTableAndGetCount(){
+        String main = wd.getWindowHandle();
+        Set<String> allWindow = wd.getWindowHandles();
+        Set<String> other = allWindow.stream()
+                .filter(x -> !x.equals(main)).collect(Collectors.toSet());
+        wd.switchTo().window(other.stream().findFirst().get());
+        wd.close();
+        wd.switchTo().window(main);
+        return other.size();
+    }
+
+    public void closeCorrentWindow(){
+        wd.close();
+    }
+
+
     public String containsText(String value){
         return wd.findElement(By.cssSelector(value)).getText();
     }
@@ -45,6 +82,15 @@ public class HelperPage {
     }
 
 
+    public void switchToIFrame(WebElement childWindow){
+        wd.switchTo().frame(childWindow);
+    }
+
+    public void returnToIFrameParent(){
+        wd.switchTo().defaultContent();
+    }
+
+
     public void openTaxiSite(){
         wd.get("https://lm.skillbox.cc/qa_tester/module07/practice4/");
     }
@@ -53,6 +99,7 @@ public class HelperPage {
     public void openWebinars(){wd.get("https://live.skillbox.ru/");}
     public void openIntersShop(){wd.get("http://intershop5.skillbox.ru/");}
     public void openDatebook(){wd.get("http://qa.skillbox.ru/module15/bignotes/#/");}
+    public void openParrotPage(){wd.get("http://qajava.skillbox.ru/module5/homework/");}
 
 }
 

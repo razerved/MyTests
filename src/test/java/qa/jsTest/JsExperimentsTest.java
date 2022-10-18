@@ -152,7 +152,7 @@ public class JsExperimentsTest extends TestBase {
         app.getWb().holdAboutSkillboxJs();
         app.getWb().clik(app.getWb().centerCareer);
         app.getWb().switchToTabs();
-        String currentTitel = app.getWcr().containsText(".header-about__title");
+        String currentTitel = app.getWb().containsText(".header-about__title");
         //String actualPlatform = app.getWb().getCurrentURL();
         //assert
         Assertions.assertEquals("Центр карьеры",currentTitel,"новая страница \"О платформе\" не открылась");
