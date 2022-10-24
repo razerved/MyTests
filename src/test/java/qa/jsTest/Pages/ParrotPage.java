@@ -1,7 +1,9 @@
 package qa.jsTest.Pages;
 
+import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -56,6 +58,11 @@ public class ParrotPage extends HelperPage {
         jS.executeScript("");
     }
 
+    public String getCerrentURL_whitOutLoadPage(){
+        ChromeOptions op = new ChromeOptions();
+        op.setPageLoadStrategy(PageLoadStrategy.EAGER);
+        return wd.getCurrentUrl();
+    }
 
 
 

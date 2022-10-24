@@ -2,6 +2,7 @@ package qa.jsTest.Pages;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
+import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -11,6 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 
 public class AppManagers {
     private WebDriver wd;
@@ -23,6 +25,7 @@ public class AppManagers {
     public IntersShop is;
     public Datebook db;
     public ParrotPage pp;
+    public ChromeOptions options;
 
     public AppManagers(WebDriver wd,
                        WebDriverWait wait,
@@ -32,25 +35,32 @@ public class AppManagers {
                        Webinars wb,
                        IntersShop is,
                        Datebook db,
-                       ParrotPage pp) {
+                       ParrotPage pp,
+                       ChromeOptions options) {
         this.wait = wait;
         this.wd = wd;
         this.tx = tx;
         this.np = np;
         this.wcr = wcr;
         this.wb = wb;
+        this.is = is;
+        this.db = db;
+        this.pp = pp;
+        this.options = options;
     }
     public AppManagers(){}
 
     public void init() {
         System.setProperty("webdriver.chrome.driver", "drivers\\\\chromedriver.exe");
-        ChromeOptions options = new ChromeOptions();
+        //ChromeOptions options = new ChromeOptions();
+        options = new ChromeOptions();
         options.addArguments("--start-maximized");
+        //options.setPageLoadStrategy(PageLoadStrategy.EAGER);
         wd = new ChromeDriver(options);
-        wait = new WebDriverWait(wd, Duration.ofSeconds(3000));
+        wait = new WebDriverWait(wd, Duration.ofSeconds(15));
 
-        wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(5000));
-
+        wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        //wd.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(3));
         hp = new HelperPage(wd,wait);
         tx = new TaxiPage(wd, wait);
         np = new NotesPage(wd,wait);
@@ -72,6 +82,22 @@ public class AppManagers {
 
     }
 
+    public void init_whit_no_LoadPage(){
+        System.setProperty("webdriver.chrome.driver", "drivers\\\\chromedriver.exe");
+        options = new ChromeOptions();
+        options.addArguments("--start-maximized");
+        options.setPageLoadStrategy(PageLoadStrategy.EAGER);
+        wd = new ChromeDriver(options);
+
+        hp = new HelperPage(wd,wait);
+        tx = new TaxiPage(wd, wait);
+        np = new NotesPage(wd,wait);
+        wcr = new WebsiteCallRequests(wd, wait);
+        wb = new Webinars(wd, wait);
+        is = new IntersShop(wd, wait);
+        db = new Datebook(wd,wait);
+        pp = new ParrotPage(wd, wait);
+    }
 
     public void out() throws IOException {
         File sourceFile = ((TakesScreenshot)wd).getScreenshotAs(OutputType.FILE);

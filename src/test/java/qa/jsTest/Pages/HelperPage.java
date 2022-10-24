@@ -1,9 +1,8 @@
 package qa.jsTest.Pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -33,13 +32,13 @@ public class HelperPage {
     /*public void switchToTabs(){
         wd.switchTo().window(wd.getWindowHandle());
     }*/
-    public String switchToNewWindow(){
+    public void switchToNewWindow(){
         //String mainPage = wd.getWindowHandle();
             for (String tab : wd.getWindowHandles()){
                 wd.switchTo().window(tab);
                 //wd.switchTo().window(mainPage);
         }
-        return wd.getCurrentUrl();
+        //return wd.getCurrentUrl();
     }
 
     public String containsText(String value){
