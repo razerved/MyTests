@@ -1,5 +1,6 @@
 package qa.jsTest.Pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -43,6 +44,9 @@ public class ParrotPage extends HelperPage {
     @FindBy(css = "[src^='./footer.html']")
     public WebElement frameFooter;
 
+    @FindBy(css = ".form-error")
+    public WebElement errorText;
+
     public void frameUp(){
         wd.switchTo().parentFrame();
     }
@@ -64,6 +68,22 @@ public class ParrotPage extends HelperPage {
         return wd.getCurrentUrl();
     }
 
+    public void choisingSex() {
+        if (wd.findElement(By.cssSelector("input[checked][id='boy']")).isDisplayed()) {
+            inputGirl.click();
+        } else if ((wd.findElement(By.cssSelector("input[checked='checked'][id='boy']")).isDisplayed())) {
+            inputGirl.click();
+        } else if (wd.findElement(By.cssSelector("input[checked][id='girl']")).isDisplayed()) {
+            inputBoy.click();
+        } else if ((wd.findElement(By.cssSelector("input[checked='checked'][id='girl']")).isDisplayed())) {
+            inputBoy.click();
+        }
+    }
+
+    public void choiseOppositeSex() {
+        switchToIFrame(frameForm);
+        choisingSex();
+    }
 
 
     //ToDo: Работа с IFrame окнами

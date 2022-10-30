@@ -1,14 +1,12 @@
 package qa.jsTest.Pages;
 
 import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.nio.channels.AcceptPendingException;
 import java.time.Duration;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class HelperPage {
 
@@ -29,9 +27,7 @@ public class HelperPage {
         return wd.getCurrentUrl();
     }
 
-    /*public void switchToTabs(){
-        wd.switchTo().window(wd.getWindowHandle());
-    }*/
+
     public void switchToNewWindow(){
         //String mainPage = wd.getWindowHandle();
             for (String tab : wd.getWindowHandles()){
@@ -39,7 +35,32 @@ public class HelperPage {
                 //wd.switchTo().window(mainPage);
         }
         //return wd.getCurrentUrl();
+
     }
+
+    /*public void returnMainWindow(){
+        String mainPage = wd.getWindowHandle();
+        for (String tab : wd.getWindowHandles()){
+            wd.switchTo().window(tab).close();
+            wd.switchTo().window(mainPage);
+        }
+    }*/
+
+    public int switchTableAndGetCount(){
+        String main = wd.getWindowHandle();
+        Set<String> allWindow = wd.getWindowHandles();
+        Set<String> other = allWindow.stream()
+                .filter(x -> !x.equals(main)).collect(Collectors.toSet());
+        wd.switchTo().window(other.stream().findFirst().get());
+        wd.close();
+        wd.switchTo().window(main);
+        return other.size();
+    }
+
+    public void closeCorrentWindow(){
+        wd.close();
+    }
+
 
     public String containsText(String value){
         return wd.findElement(By.cssSelector(value)).getText();

@@ -1,32 +1,21 @@
 package qa.jsTest;
 
-import org.checkerframework.checker.units.qual.A;
-import org.checkerframework.checker.units.qual.C;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.jupiter.api.*;
-import org.junit.runners.Parameterized;
-import org.openqa.selenium.By;
-import org.openqa.selenium.PageLoadStrategy;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import qa.jsTest.Pages.AppManagers;
-import qa.jsTest.Pages.HelperPage;
-import qa.jsTest.Pages.ParrotPage;
 
+import org.junit.Assert;
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+import qa.jsTest.Pages.AppManagers;
 import java.io.IOException;
+import java.util.stream.Stream;
 
 public class IFrameTest extends TestBase {
     AppManagers appNew = new AppManagers();
 
 
     @Test
-    @DisplayName("Проверка перехода на новую страницу")
+    @DisplayName("Проверка кол-во активных страниц")
     public void test1() throws IOException {
         appNew.init_whit_no_LoadPage();
         appNew.getPp().openParrotPage();
@@ -34,19 +23,68 @@ public class IFrameTest extends TestBase {
         appNew.getPp().inputGirl.click();
         appNew.getPp().frameObject(appNew.getPp().frameFooter);
         appNew.getPp().linkSkillbox.click();
-        appNew.getPp().switchToNewWindow();
-        String actualUrl = appNew.getPp().getCerrentURL_whitOutLoadPage();
-        Assert.assertEquals("URL сайта сходится","https://skillbox.ru/",actualUrl);
+        int countTab = appNew.getPp().switchTableAndGetCount();
+        Assert.assertEquals("URL сайта сходится",1, countTab);
+        appNew.outForAppNew();
     }
-    @AfterEach
-    protected void newOut() throws IOException {
-        appNew.out();
+
+
+    @Test
+    @DisplayName("Проверка перехода по ссылк skillBox")
+    public void test2() throws IOException {
+        appNew.init_whit_no_LoadPage();
+        appNew.getPp().openParrotPage();
+        appNew.getPp().frameObject(appNew.getPp().frameForm);
+        appNew.getPp().inputGirl.click();
+        appNew.getPp().frameObject(appNew.getPp().frameFooter);
+        appNew.getPp().linkSkillbox.click();
+        appNew.getPp().switchToNewWindow();
+        String actual = appNew.getPp().getCerrentURL_whitOutLoadPage();
+        Assert.assertEquals("URL сайта SkillBox не сходится","https://skillbox.ru/", actual);
+        appNew.outForAppNew();
+    }
+
+
+    @Test
+    @DisplayName("Проверка отображения Header")
+    public void test3(){
+        app.getPp().openParrotPage();
+        Assert.assertTrue("Хедер не отображается", app.getPp().headerPage.isDisplayed());
+        app.getPp().choiseOppositeSex();
+        app.getPp().inputEmail.sendKeys("tets@ter.ru");
+        app.getPp().chooseName.click();
+        Assert.assertTrue("Хедер не отображается", app.getPp().headerPage.isDisplayed());
+    }
+
+
+    private static Stream<Arguments> someEmail(){
+        return Stream.of(Arguments.arguments("11111111")
+        );
+    }
+    @ParameterizedTest
+    @MethodSource(("someEmail"))
+    @DisplayName("Проверка валидации поля email")
+    public void test4(String email){
+        app.getPp().openParrotPage();
+        app.getPp().choiseOppositeSex();
+        app.getPp().inputEmail.sendKeys(email);
+        app.getPp().chooseName.click();
+        Assert.assertTrue("Ошибка \"Некорректный email\" не выведена",app.getPp().errorText.isDisplayed());
     }
 
     @Test
-    public void test2(){
-
+    @DisplayName("Проверка отображения ошибки Введите email")
+    public void test5(){
+        app.getPp().openParrotPage();
+        app.getPp().frameObject(app.getPp().frameForm);
+        app.getPp().chooseName.click();
+        String actualError = app.getPp().errorText.getText();
+        Assert.assertEquals("Выведене не корректная ошибка","Введите email",actualError);
+        app.getPp().frameObject(app.getPp().frameFooter);
+        app.getPp().linkSkillbox.click();
+        app.getPp().switchTableAndGetCount();
+        Assert.assertEquals("Выведене не корректная ошибка","Введите email",actualError);
     }
-
+    
 
 }

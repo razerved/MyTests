@@ -35,8 +35,7 @@ public class AppManagers {
                        Webinars wb,
                        IntersShop is,
                        Datebook db,
-                       ParrotPage pp,
-                       ChromeOptions options) {
+                       ParrotPage pp) {
         this.wait = wait;
         this.wd = wd;
         this.tx = tx;
@@ -100,6 +99,11 @@ public class AppManagers {
     }
 
     public void out() throws IOException {
+        File sourceFile = ((TakesScreenshot)wd).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(sourceFile, new File("F:\\screenShotForTest\\screenshot.png"));
+        wd.quit();
+    }
+    public void outForAppNew() throws IOException {
         File sourceFile = ((TakesScreenshot)wd).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(sourceFile, new File("F:\\screenShotForTest\\screenshot.png"));
         wd.quit();
