@@ -14,6 +14,14 @@ public class IFrameTest extends TestBase {
     AppManagers appNew = new AppManagers();
 
 
+    @BeforeEach
+    public void set() throws IOException {
+        if (app.options == app.options.addArguments("--start-maximized")   ){
+            System.out.println("Не праввильные параметры");
+            app.out();
+            System.exit(0);
+        }
+    }
     @Test
     @DisplayName("Проверка кол-во активных страниц")
     public void test1() throws IOException {
@@ -53,6 +61,7 @@ public class IFrameTest extends TestBase {
         app.getPp().choiseOppositeSex();
         app.getPp().inputEmail.sendKeys("tets@ter.ru");
         app.getPp().chooseName.click();
+
         Assert.assertTrue("Хедер не отображается", app.getPp().headerPage.isDisplayed());
     }
 

@@ -1,13 +1,13 @@
 package qa.jsTest;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.BeforeClass;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 
+import java.io.IOException;
 import java.util.stream.Stream;
 
 public class JsExperimentsTest extends TestBase {
@@ -28,7 +28,14 @@ public class JsExperimentsTest extends TestBase {
         Assertions.assertNotEquals("11/02/06", now, "Дата не проставилась осталась null");
     }
 
-
+    /*@BeforeEach
+    public void set() throws IOException {
+        if (app.options == app.options.addArguments("--start-maximized")   ){
+            System.out.println("Не праввильные параметры");
+            app.out();
+            System.exit(0);
+        }
+    }*/
     @Test
     @DisplayName("simpleTestJs2_Notes")
     public void test2() {

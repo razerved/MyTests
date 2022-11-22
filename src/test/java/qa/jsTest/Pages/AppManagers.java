@@ -53,7 +53,7 @@ public class AppManagers {
         options.addArguments("--start-maximized");
         //options.setPageLoadStrategy(PageLoadStrategy.EAGER);
         wd = new ChromeDriver(options);
-        wait = new WebDriverWait(wd, Duration.ofSeconds(15));
+        wait = new WebDriverWait(wd, Duration.ofSeconds(10));
 
         wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         //wd.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(3));
