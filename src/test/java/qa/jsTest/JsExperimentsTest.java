@@ -174,5 +174,9 @@ public class JsExperimentsTest extends TestBase {
         app.getWb().allCourses.isDisplayed();
     }
 
-
+    @Test
+    public void test8(){
+        appb.init();
+        appb.getWb().openWebinars();
+    }
 }

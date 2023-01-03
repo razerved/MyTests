@@ -4,12 +4,14 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.Browser;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
-import java.util.concurrent.TimeUnit;
 
 public class AppManagers {
     private WebDriver wd;
@@ -23,6 +25,7 @@ public class AppManagers {
     public Datebook db;
     public ParrotPage pp;
     public ChromeOptions options;
+    public String browser;
 
     public AppManagers(WebDriver wd,
                        WebDriverWait wait,
@@ -45,10 +48,20 @@ public class AppManagers {
         this.options = options;
     }
     public AppManagers(){}
+    public AppManagers(String browser){
+        this.browser = browser;
+    }
 
     public void init() {
+       /* if(browser.equals("CHROME")){
+            wd = new ChromeDriver(options);
+        }else if(browser.equals("EDGE")){
+            wd = new EdgeDriver();
+        }else if(browser.equals("FIREFOX")){
+            wd = new FirefoxDriver();
+        }*/
+
         System.setProperty("webdriver.chrome.driver", "drivers\\\\chromedriver.exe");
-        //ChromeOptions options = new ChromeOptions();
         options = new ChromeOptions();
         options.addArguments("--start-maximized");
         //options.setPageLoadStrategy(PageLoadStrategy.EAGER);
@@ -75,7 +88,6 @@ public class AppManagers {
         cookie.setMaxAge(Integer.MAX_VALUE);
         HttpServletResponse response = null;
         response.addCookie(cookie);*/
-
     }
 
     public void init_whit_no_LoadPage(){
