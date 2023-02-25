@@ -68,7 +68,8 @@ public class AppManagers {
         wd = new ChromeDriver(options);
         wait = new WebDriverWait(wd, Duration.ofSeconds(10));
 
-        wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        wd.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
         //wd.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(3));
         hp = new HelperPage(wd,wait);
         tx = new TaxiPage(wd, wait);
@@ -78,6 +79,9 @@ public class AppManagers {
         is = new IntersShop(wd, wait);
         db = new Datebook(wd,wait);
         pp = new ParrotPage(wd, wait);
+
+
+        //HelperPage.serWd(wd);
 
         /*SSLEngine request = null;
         HttpSession session= (HttpSession) request.getSession();
@@ -116,7 +120,9 @@ public class AppManagers {
             alert.accept();
             takeScreenShot();
         }
-        wd.quit();
+
+        wd.quit(); //закрытие браузера
+        wd.close(); //закрытие chrome
     }
 
     public void takeScreenShot() throws IOException {

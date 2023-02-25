@@ -22,6 +22,10 @@ public class HelperPage {
         PageFactory.initElements(wd, this);
         jS = (JavascriptExecutor)wd;
     }
+    /*public static void serWd(WebDriver wd){
+        this.wd = wd;
+    }*/
+
     //public HelperPage(WebDriver wd){}
     public HelperPage(){}
 

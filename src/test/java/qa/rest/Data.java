@@ -1,8 +1,6 @@
 package qa.rest;
 
-import java.util.Date;
-
-public class Root {
+public class Data extends Root {
 
 
     private Integer id;
@@ -11,10 +9,12 @@ public class Root {
     private String last_name;
     private String avatar;
 
-    public Root() {
+    public Data() {
+        super();
     }
 
-    public Root(Integer id, String email, String first_name, String last_name, String avatar) {
+
+    public Data(Integer id, String email, String first_name, String last_name, String avatar) {
         this.id = id;
         this.email = email;
         this.first_name = first_name;
